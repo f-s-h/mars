@@ -58,4 +58,23 @@ using(var scope = app.Services.CreateScope())
     }
 }
 
+using(var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+    var email = "admin@admin.mars";
+    var password = "#Password1";
+
+    if(await userManager.FindByEmailAsync(email) == null) 
+    {
+        var user = new User();
+        user.UserName = email;
+        user.Email = email;
+
+        await userManager.CreateAsync(user, password);
+
+        await userManager.AddToRoleAsync(user, "Admin");
+    }
+
+}
+
 app.Run();
