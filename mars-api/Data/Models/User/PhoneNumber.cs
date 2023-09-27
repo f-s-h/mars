@@ -1,4 +1,4 @@
-﻿namespace mars_api.Data.Models.Users
+﻿namespace mars_api.Data.Models.User
 {
     public class PhoneNumber
     {

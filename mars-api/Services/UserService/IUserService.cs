@@ -1,11 +1,11 @@
-﻿using mars_api.Data.Models.Users;
+﻿using mars_api.Data.DTO.User;
 
 namespace mars_api.Services.UserService
 {
     public interface IUserService
     {
-        public ICollection<User> GetAllUsers();
-        public User? GetUserById(Guid userId);
+        public ICollection<UserDTO> GetAllUsers();
+        public UserDTO? GetUserById(Guid userId);
 
     }
 }

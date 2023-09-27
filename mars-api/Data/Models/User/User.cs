@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace mars_api.Data.Models.Users
+namespace mars_api.Data.Models.User
 {
     public class User : IdentityUser
     {

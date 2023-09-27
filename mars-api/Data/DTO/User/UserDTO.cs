@@ -1,4 +1,4 @@
-﻿namespace mars_api.Data.DTO.Users
+﻿namespace mars_api.Data.DTO.User
 {
     public class UserDTO
     {
@@ -9,5 +9,7 @@
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public DateOnly? Birthday { get; set; }
+        public ICollection<AddressDTO>? Addresses { get; set; }
+        public ICollection<PhoneNumberDTO>? PhoneNumbers { get; set; }
     }
 }

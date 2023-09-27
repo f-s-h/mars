@@ -1,5 +1,5 @@
 ﻿using Duende.IdentityServer.Extensions;
-using mars_api.Data.Models.Users;
+using mars_api.Data.DTO.User;
 using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +19,9 @@ namespace mars_api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ICollection<User>> GetAllUsers()
+        public ActionResult<ICollection<UserDTO>> GetAllUsers()
         {
-            ICollection<User> users = userService.GetAllUsers();
+            ICollection<UserDTO> users = userService.GetAllUsers();
             if (users.IsNullOrEmpty())
             {
                 return NoContent();
@@ -30,9 +30,9 @@ namespace mars_api.Controllers
         }
 
         [HttpGet("{userId}")]
-        public ActionResult<ICollection<User>> GetUserById([FromRoute] Guid userId)
+        public ActionResult<ICollection<UserDTO>> GetUserById([FromRoute] Guid userId)
         {
-            User? user = userService.GetUserById(userId);
+            UserDTO? user = userService.GetUserById(userId);
 
             Console.WriteLine(user?.ToString());
 

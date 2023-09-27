@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using mars_api.Context;
@@ -11,9 +12,11 @@ using mars_api.Context;
 namespace mars_api.Migrations
 {
     [DbContext(typeof(MarsContext))]
-    partial class MarsContextModelSnapshot : ModelSnapshot
+    [Migration("20230927095419_PhoneNumberAndAdress")]
+    partial class PhoneNumberAndAdress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
