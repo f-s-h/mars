@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace mars_api.Data.Models
+﻿namespace mars_api.Data.DTO.Users
 {
-    public class User : IdentityUser
+    public class UserDTO
     {
+        public Guid Id { get; set; }
+        public string? UserName { get; set; } = string.Empty;
+        public string? Email { get; set; } = string.Empty;
         public string? Title { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public DateOnly? Birthday { get; set; }
-
     }
 }

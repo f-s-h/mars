@@ -1,8 +1,11 @@
+using Duende.IdentityServer.Validation;
 using mars_api.Context;
-using mars_api.Data.Models;
+using mars_api.Data.Models.Users;
+using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,19 +16,24 @@ builder.Services.AddDbContext<MarsContext>((option) =>
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<MarsContext>();
+    .AddEntityFrameworkStores<MarsContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddIdentityServer()
-    .AddApiAuthorization<User, MarsContext>();
+    .AddApiAuthorization<User, MarsContext>()
+    .AddDeveloperSigningCredential();
 
 // Also possible with Identity Cookie
 builder.Services.AddAuthentication()
         .AddIdentityServerJwt();
-        //.AddIdentityCookies();
+//.AddIdentityCookies();
+
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
