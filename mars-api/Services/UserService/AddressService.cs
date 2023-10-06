@@ -1,6 +1,6 @@
 ﻿using mars_api.Context;
 using mars_api.Data.DTO;
-using mars_api.Data.DTO.User;
+using mars_api.Data.DTO.Users;
 
 namespace mars_api.Services.UserService
 {

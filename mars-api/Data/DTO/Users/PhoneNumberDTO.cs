@@ -1,4 +1,4 @@
-﻿namespace mars_api.Data.DTO.User
+﻿namespace mars_api.Data.DTO.Users
 {
     public class PhoneNumberDTO
     {

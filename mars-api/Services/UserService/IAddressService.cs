@@ -1,4 +1,4 @@
-﻿using mars_api.Data.DTO.User;
+﻿using mars_api.Data.DTO.Users;
 
 namespace mars_api.Services.UserService
 {

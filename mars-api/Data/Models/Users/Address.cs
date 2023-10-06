@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace mars_api.Data.Models.User
+namespace mars_api.Data.Models.Users
 {
     public class Address
     {

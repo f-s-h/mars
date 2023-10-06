@@ -1,6 +1,6 @@
 using Duende.IdentityServer.Validation;
 using mars_api.Context;
-using mars_api.Data.Models.User;
+using mars_api.Data.Models.Users;
 using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -22,7 +22,6 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<User, MarsContext>()
     .AddDeveloperSigningCredential();
-
 // Also possible with Identity Cookie
 builder.Services.AddAuthentication()
         .AddIdentityServerJwt();

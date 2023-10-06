@@ -1,5 +1,5 @@
 ﻿using Duende.IdentityServer.Extensions;
-using mars_api.Data.DTO.User;
+using mars_api.Data.DTO.Users;
 using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -34,13 +34,18 @@ namespace mars_api.Controllers
         {
             UserDTO? user = userService.GetUserById(userId);
 
-            Console.WriteLine(user?.ToString());
-
             if(user == null)
             {
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        [HttpPost]
+        public ActionResult RegisterUser([FromBody] UserDTO userDTO)
+        {
+            userDTO = userService.CreateUser(userDTO); 
+            return Ok(userDTO);
         }
     }
 }

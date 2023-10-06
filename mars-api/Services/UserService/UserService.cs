@@ -2,8 +2,9 @@
 using Duende.IdentityServer.Extensions;
 using mars_api.Context;
 using mars_api.Data.DTO;
-using mars_api.Data.DTO.User;
-using mars_api.Data.Models.User;
+using mars_api.Data.DTO.Users;
+using mars_api.Data.Models;
+using mars_api.Data.Models.Users;
 
 namespace mars_api.Services.UserService
 {
@@ -47,6 +48,44 @@ namespace mars_api.Services.UserService
                 user.PhoneNumbers = phoneNumberService.GetPhoneNumbersForUserId(userId);
             } 
             return user;
+        }
+
+        public UserDTO CreateUser(UserDTO userDTO)
+        {
+            Guid id = Guid.NewGuid();
+            userDTO.Id = id;
+            User user = userDTO.AsModel();
+                       
+            context.Users.Add(user);
+
+            if(userDTO.Addresses != null)
+            {
+                foreach (AddressDTO addressDTO in userDTO.Addresses)
+                {
+                    Guid addressId = Guid.NewGuid();
+                    addressDTO.Id = addressId;
+                    addressDTO.UserId = userDTO.Id;
+                    Address address = addressDTO.AsModel();
+                    context.Addresses.Add(address);
+                }
+            }
+
+            if(userDTO.PhoneNumbers != null)
+            {
+                foreach (PhoneNumberDTO phoneNumberDTO in userDTO.PhoneNumbers)
+                {
+                    Guid phoneNumberId = Guid.NewGuid();
+                    phoneNumberDTO.Id = phoneNumberId;
+                    phoneNumberDTO.UserId = userDTO.Id;
+                    PhoneNumber phoneNumber = phoneNumberDTO.AsModel();
+                    context.PhoneNumbers.Add(phoneNumber);
+                }
+            }
+
+            context.SaveChanges();
+
+            // Returns userDTO with new ids
+            return userDTO;
         }
     }
 }
