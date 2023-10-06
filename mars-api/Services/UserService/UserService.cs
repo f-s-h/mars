@@ -42,11 +42,11 @@ namespace mars_api.Services.UserService
                 .Where(u => u.Id.Equals(userIdString))
                 .Select(u => u.AsDTO())
                 .FirstOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 user.Addresses = addressService.GetAdressesForUserId(userId);
                 user.PhoneNumbers = phoneNumberService.GetPhoneNumbersForUserId(userId);
-            } 
+            }
             return user;
         }
 
@@ -55,10 +55,10 @@ namespace mars_api.Services.UserService
             Guid id = Guid.NewGuid();
             userDTO.Id = id;
             User user = userDTO.AsModel();
-                       
+
             context.Users.Add(user);
 
-            if(userDTO.Addresses != null)
+            if (userDTO.Addresses != null)
             {
                 foreach (AddressDTO addressDTO in userDTO.Addresses)
                 {
@@ -70,7 +70,7 @@ namespace mars_api.Services.UserService
                 }
             }
 
-            if(userDTO.PhoneNumbers != null)
+            if (userDTO.PhoneNumbers != null)
             {
                 foreach (PhoneNumberDTO phoneNumberDTO in userDTO.PhoneNumbers)
                 {

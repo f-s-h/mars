@@ -34,7 +34,7 @@ namespace mars_api.Controllers
         {
             UserDTO? user = userService.GetUserById(userId);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -44,7 +44,7 @@ namespace mars_api.Controllers
         [HttpPost]
         public ActionResult RegisterUser([FromBody] UserDTO userDTO)
         {
-            userDTO = userService.CreateUser(userDTO); 
+            userDTO = userService.CreateUser(userDTO);
             return Ok(userDTO);
         }
     }

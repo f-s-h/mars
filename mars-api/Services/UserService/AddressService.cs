@@ -7,7 +7,8 @@ namespace mars_api.Services.UserService
     public class AddressService : IAddressService
     {
         private readonly MarsContext context;
-        public AddressService(MarsContext context) { 
+        public AddressService(MarsContext context)
+        {
             this.context = context;
         }
 

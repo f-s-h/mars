@@ -8,9 +8,10 @@ namespace mars_api.Services.UserService
     {
         private readonly MarsContext context;
 
-        public PhoneNumberService(MarsContext context) { 
+        public PhoneNumberService(MarsContext context)
+        {
             this.context = context;
-        } 
+        }
         public ICollection<PhoneNumberDTO> GetAllPhoneNumbers()
         {
             return context.PhoneNumbers

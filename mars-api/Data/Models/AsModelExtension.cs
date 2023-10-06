@@ -34,7 +34,7 @@ namespace mars_api.Data.Models
             };
         }
 
-        public static PhoneNumber AsModel(this PhoneNumberDTO phoneNumberDTO) 
+        public static PhoneNumber AsModel(this PhoneNumberDTO phoneNumberDTO)
         {
             return new PhoneNumber()
             {

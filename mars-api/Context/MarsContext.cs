@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 namespace mars_api.Context
 {
-    public class MarsContext: ApiAuthorizationDbContext<User>
+    public class MarsContext : ApiAuthorizationDbContext<User>
     {
         public virtual DbSet<User> Users => Set<User>();
         public virtual DbSet<PhoneNumber> PhoneNumbers => Set<PhoneNumber>();
@@ -18,6 +18,6 @@ namespace mars_api.Context
         {
 
         }
-        
+
     }
 }

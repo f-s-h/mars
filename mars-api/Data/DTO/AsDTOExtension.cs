@@ -5,7 +5,8 @@ namespace mars_api.Data.DTO
 {
     public static class AsDTOExtension
     {
-        public static UserDTO AsDTO(this User user) {
+        public static UserDTO AsDTO(this User user)
+        {
             return new UserDTO()
             {
                 Id = Guid.Parse(user.Id),
@@ -42,7 +43,8 @@ namespace mars_api.Data.DTO
             };
         }
 
-        public static CountryDTO AsDTO(this Country country) {
+        public static CountryDTO AsDTO(this Country country)
+        {
             return new CountryDTO()
             {
                 Id = country.Id,
