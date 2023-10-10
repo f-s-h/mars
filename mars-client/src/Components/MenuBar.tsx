@@ -52,7 +52,7 @@ interface Item {
   link: string,
 }
 
-const menuItems = [
+const menuItems: Item[] = [
   {
     name: "Users",
     link: "/users",
@@ -76,8 +76,7 @@ const MenuBar: React.FC = () => {
         items={items}
         theme="dark"
       />
-      {/* TODO: Change MenuBar
-      <Box
+      {/*<Box
         sx={{
           color: "white",
         }}
@@ -85,14 +84,21 @@ const MenuBar: React.FC = () => {
         {
           menuItems.map((item) => {
             return (
+              <Box>
                 <Link to={item.link}
                   style={{
                   }}
                 >
-                  <Box>
+                  <Box
+                    sx={{
+                      padding: "10px 4px 10px 4px",
+                      color: "lightgray",
+                    }}
+                  >
                     {item.name}
                   </Box>
                 </Link>
+              </Box>
             )
           })
         }
