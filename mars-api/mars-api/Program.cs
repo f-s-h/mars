@@ -5,6 +5,7 @@ using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Runtime.CompilerServices;
 
 var AllowedOrigins = "AllowedOrigins";
@@ -34,9 +35,26 @@ builder.Services.AddIdentityServer()
     .AddApiAuthorization<User, MarsContext>()
     .AddDeveloperSigningCredential();
 // Also possible with Identity Cookie
-builder.Services.AddAuthentication()
-        .AddIdentityServerJwt();
+builder.Services.AddAuthentication("Bearer")
+        .AddJwtBearer("Bearer", options =>
+        {
+            options.Authority = "https://localhost:5001";
+            options.RequireHttpsMetadata = false;
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false,
+            };
+        });
 //.AddIdentityCookies();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ApiScope", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", "mars-api");
+    });
+});
 
 
 builder.Services.AddControllersWithViews();
@@ -61,10 +79,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseIdentityServer();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization("ApiScope");
 
 using(var scope = app.Services.CreateScope())
 {
