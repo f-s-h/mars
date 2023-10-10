@@ -1,4 +1,8 @@
+.vs
+
 mars-api/.vs
 mars-api/bin
 mars-api/obj
+
 mars-client/node_modules
+mars-client/.vs
