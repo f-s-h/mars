@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
+var AllowedOrigins = "AllowedOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MarsContext>((option) =>
@@ -14,10 +16,19 @@ builder.Services.AddDbContext<MarsContext>((option) =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("marsDB"));
 });
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: AllowedOrigins,
+//        policy =>
+//        {
+//            policy.WithOrigins("http://localhost:3000");
+//        });
+//});
+
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MarsContext>()
-    .AddDefaultTokenProviders();
+    .AddDefaultTokenProviders();  
 
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<User, MarsContext>()
@@ -42,9 +53,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+    app.UseCors(e => e.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
     app.UseSwaggerUI();
 }
 
+//app.UseCors(AllowedOrigins);
 
 app.UseHttpsRedirection();
 
