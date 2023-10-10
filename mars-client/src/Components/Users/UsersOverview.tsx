@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useUser } from '../../Context/UserContext'
-import { Spin, Table } from 'antd';
+import { Button, Spin, Table } from 'antd';
 import { Box } from '@mui/material';
 import { Searchbar } from './Searchbar';
 import { User } from '../../models';
+import { EditOutlined, EyeOutlined } from '@ant-design/icons';
 
 export const UsersOverview = () => {
   const { loading, users, getAllUsers } = useUser();
@@ -29,23 +30,34 @@ export const UsersOverview = () => {
       key: 'lastName'
     },
     {
-      title: 'Username',
-      dataIndex: 'userName',
-      key: 'userName',
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
       title: 'Options',
+      dataIndex: 'id',
+      key: 'options',
+      width: '10%',
+      render: (id: string) => (
+        <Box>
+          <Button
+            style={{
+              margin: "2px",
+            }}
+          >
+            <EyeOutlined />
+          </Button>
+          <Button
+            style={{
+              margin: "2px",
+            }}
+          >
+            <EditOutlined/>
+          </Button>
+        </Box>
+      )
     }
   ]
 
   return (
     <>
-      <h1>Users Overview</h1>
+      <h1>Overview</h1>
       <Box
         sx = {{
           paddingBottom: "2vh" 

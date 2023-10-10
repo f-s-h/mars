@@ -31,7 +31,7 @@ const items: MenuProps['items'] = [
 
 
   getItem('Users', 'users', null, [
-    getItem('All Users', '0', <Link to="/users" />),
+    getItem('Overview', '0', <Link to="/users" />),
     getItem('Create User', '1', <Link to="/users/create" />),
   ], 'group'),
 

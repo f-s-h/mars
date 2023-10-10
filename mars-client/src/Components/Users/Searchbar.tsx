@@ -15,7 +15,7 @@ export const Searchbar = (props: SearchbarProps) => {
 
   return (
     <>
-        <Input placeholder="User" onChange={(e) => applyFilter(e.target.value)}></Input>
+        <Input placeholder="Find user" onChange={(e) => applyFilter(e.target.value)}></Input>
     </>
   )
 }
