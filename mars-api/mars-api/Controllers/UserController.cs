@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mars_api.Controllers
 {
-    //[Authorize]
-    [AllowAnonymous]
+    [Authorize]
     [ApiController]
     [Route("/api/[controller]/[action]")]
     public class UserController : ControllerBase
