@@ -1,6 +1,4 @@
-﻿using AutoMapper.QueryableExtensions;
-using Duende.IdentityServer.Extensions;
-using mars_api.Context;
+﻿using mars_api.Context;
 using mars_api.Data.DTO;
 using mars_api.Data.DTO.Users;
 using mars_api.Data.Models;

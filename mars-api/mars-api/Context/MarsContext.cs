@@ -1,8 +1,5 @@
-﻿using Duende.IdentityServer.EntityFramework.Options;
-using mars_api.Data.Models.Users;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+﻿using mars_api.Data.Models.Users;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace mars_api.Context
 {

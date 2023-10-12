@@ -25,7 +25,8 @@ namespace mars_api
         {
             builder.Services.AddDbContext<MarsContext>((option) =>
             {
-                option.UseNpgsql(builder.Configuration.GetConnectionString("marsDB"));
+                option.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+                //option.UseNpgsql(builder.Configuration.GetConnectionString("marsDB"));
             });
         }
 

@@ -1,8 +1,8 @@
-﻿using Duende.IdentityServer.Extensions;
-using mars_api.Data.DTO.Users;
+﻿using mars_api.Data.DTO.Users;
 using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace mars_api.Controllers
 {
