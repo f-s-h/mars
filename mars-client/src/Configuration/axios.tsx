@@ -1,6 +1,4 @@
-import { useOidc, useOidcAccessToken } from "@axa-fr/react-oidc";
 import axios from "axios";
-import { config } from "process";
 
 const axiosInstance = axios.create({
     baseURL: "https://localhost:7095/api",

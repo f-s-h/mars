@@ -1,9 +1,11 @@
 import './App.css';
-import MenuBar from './Components/MenuBar';
+import MenuBar from './Components/MenuBar/MenuBar';
 import {Layout} from 'antd'
 import { Router } from './router';
 import AppContext from './AppContext';
 import { OidcProvider } from '@axa-fr/react-oidc';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material';
 
 const configuration = {
   client_id: 'react-mars-client',
@@ -20,7 +22,19 @@ function App() {
 
   const { Content, Sider } = Layout;
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#001529",
+        light: "#1c3147",
+        dark: "#051321",
+        contrastText: "#A6ADB4",
+      }
+    },
+  })
+
   return (
+    <ThemeProvider theme={theme}>
     <OidcProvider configuration={configuration}>
       <Layout style={{ minHeight: '100vh' }}>
       <Sider>
@@ -28,7 +42,8 @@ function App() {
       </Sider>
       <Layout>
         <Content style={{
-          padding: "0 5vh 0 5vh"
+          padding: "0 5vh 0 5vh",
+          color: theme.palette.primary.contrastText,
         }}>
           <AppContext>
             <Router/>
@@ -37,6 +52,7 @@ function App() {
       </Layout>
     </Layout>
     </OidcProvider>
+    </ThemeProvider>
   );
 }
 

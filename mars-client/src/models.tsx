@@ -21,6 +21,11 @@ export interface PhoneNumber {
     number: string,
 }
 
+export interface PhoneNumberState {
+    userId: string,
+    number: string,
+}
+
 export interface User {
     id: string,
     username: string, 
