@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
+using IdentityModel;
 using static System.Net.WebRequestMethods;
 
 namespace IdentityServer;
@@ -16,7 +17,7 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new ApiScope("mars-api"),
+            new ApiScope(name: "mars-api", displayName: "Mars API", userClaims: new List<string> { "role" }),
             new ApiScope("scope2"),
         };
 
@@ -37,9 +38,9 @@ public static class Config
                 PostLogoutRedirectUris = {"http://localhost:3000/"},
                 AllowedScopes =
                 {
-                    "mars-api",
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
+                    "mars-api"
                 },
                 AllowedCorsOrigins = new List<string>
                 {

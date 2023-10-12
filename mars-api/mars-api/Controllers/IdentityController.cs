@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace mars_api.Controllers
 {
     [Route("identity")]
-    [Authorize]
+    [Authorize ]
     public class IdentityController
     {
         [HttpGet]
