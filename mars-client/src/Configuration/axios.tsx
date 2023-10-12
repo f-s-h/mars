@@ -20,5 +20,3 @@ export const addAccessInterceptor = (accessToken: string) => {
 }
 
 export default axiosInstance;
-
-// TODO: Use Bearer for authentication
