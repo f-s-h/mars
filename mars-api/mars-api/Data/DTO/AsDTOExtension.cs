@@ -9,8 +9,7 @@ namespace mars_api.Data.DTO
         {
             return new UserDTO()
             {
-                Id = Guid.Parse(user.Id),
-                UserName = user.UserName,
+                Id = user.Id,
                 Email = user.Email,
                 Title = user.Title,
                 FirstName = user.FirstName,

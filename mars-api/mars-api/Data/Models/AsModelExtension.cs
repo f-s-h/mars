@@ -10,8 +10,7 @@ namespace mars_api.Data.Models
         {
             return new User()
             {
-                Id = userDTO.Id.ToString(),
-                UserName = userDTO.UserName,
+                Id = userDTO.Id,
                 Email = userDTO.Email,
                 Title = userDTO.Title,
                 FirstName = userDTO.FirstName,
