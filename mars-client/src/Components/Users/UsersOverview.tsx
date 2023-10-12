@@ -4,13 +4,18 @@ import { Spin, Table } from 'antd';
 import { Box } from '@mui/material';
 import { Searchbar } from './Searchbar';
 import { User } from '../../models';
+import { useOidcAccessToken, useOidcUser } from '@axa-fr/react-oidc';
 
 export const UsersOverview = () => {
   const { loading, users, getAllUsers } = useUser();
+  const {accessToken} = useOidcAccessToken();
   const [ filteredUsers, setFilteredUsers ] = useState<User[]>([])
+  const {oidcUser} = useOidcUser();
+
+  console.log();
 
   useEffect(() => {
-    getAllUsers();
+    getAllUsers(accessToken);
   }, []);
 
   useEffect(() => {
