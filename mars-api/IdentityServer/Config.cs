@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
+using static System.Net.WebRequestMethods;
 
 namespace IdentityServer;
 
@@ -26,39 +27,24 @@ public static class Config
             {
                 ClientId = "react-mars-client",
                 ClientName = "React Mars-Client",
-                AllowedGrantTypes = GrantTypes.Implicit,
+                RequireClientSecret = false,
+                RequirePkce = true,
+                AllowedGrantTypes = GrantTypes.Code,
                 AllowAccessTokensViaBrowser = true,
                 RequireConsent = false,
-                AccessTokenLifetime = 360,
-                RedirectUris = {"http://localhost:3000"},
-                PostLogoutRedirectUris = {"http://localhost:3000"},
+                AccessTokenLifetime = 60 * 30,
+                RedirectUris = {"http://localhost:3000/authentication/callback"},
+                PostLogoutRedirectUris = {"http://localhost:3000/"},
                 AllowedScopes =
                 {
+                    "mars-api",
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                 },
-            },
-            new Client
-            {
-                ClientId = "console-test-client",
-                ClientSecrets = { new Secret("secret".Sha256()) },
-
-                AllowedGrantTypes = GrantTypes.Code,
-            
-                // where to redirect to after login
-                RedirectUris = { "https://localhost:5002/signin-oidc" },
-
-                // where to redirect to after logout
-                PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
-
-                AllowOfflineAccess = true,
-
-                AllowedScopes = new List<string>
+                AllowedCorsOrigins = new List<string>
                 {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "api1"
+                    "http://localhost:3000"
                 }
-            }
+            },
         };
 }

@@ -1,4 +1,6 @@
 ﻿using IdentityServer;
+using IdentityServer.Models;
+using Microsoft.AspNetCore.Identity;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -20,6 +22,8 @@ try
         .ConfigureServices()
         .ConfigurePipeline();
 
+   app.UseCors(e => e.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
     // this seeding is only for the template to bootstrap the DB and users.
     // in production you will likely want a different approach.
     if (args.Contains("/seed"))
@@ -29,6 +33,41 @@ try
         Log.Information("Done seeding database. Exiting.");
         return;
     }
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var roles = new[] { "Admin", "Manager", "Member" };
+
+        foreach (var role in roles)
+        {
+            if (!await roleManager.RoleExistsAsync(role))
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
+    }
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+        string email = "admin@admin.com";
+        string username = "admin";
+        string password = "Password123$";
+
+        if(await userManager.FindByEmailAsync(email) == null)
+        {
+            var user = new ApplicationUser();
+            user.UserName = username;
+            user.Email = email;
+
+            await userManager.CreateAsync(user, password);
+
+            await userManager.AddToRoleAsync(user, "Admin");
+        }
+    }
+
 
     app.Run();
 }
