@@ -62,7 +62,6 @@ const menuItems = [
 const MenuBar: React.FC = () => {
 
   const onClick: MenuProps['onClick'] = (e) => {
-    //console.log('click ', e);
   };
 
 

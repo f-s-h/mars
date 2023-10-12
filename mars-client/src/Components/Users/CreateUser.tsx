@@ -48,7 +48,6 @@ export const CreateUser = () => {
     const onFinish = async (values: any) => {
         console.log(values);
         var response = await createUser(values as UserFormState);
-        console.log("Response:");
         console.log(response);    
     }
 

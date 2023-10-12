@@ -20,8 +20,6 @@ function App() {
 
   const { Content, Sider } = Layout;
 
-  console.log(window.location.origin + "/authentication/silent-callback");
-
   return (
     <OidcProvider configuration={configuration}>
       <Layout style={{ minHeight: '100vh' }}>

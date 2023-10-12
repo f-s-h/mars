@@ -29,8 +29,6 @@ export interface User {
     firstName: string,
     lastName: string,
     birthday: Date,
-    addresses: Address[],
-    phoneNumbers: PhoneNumber[],
 }
 
 export interface UserFormState {
@@ -40,6 +38,4 @@ export interface UserFormState {
     firstName: string,
     lastName: string,
     birthday?: Date,
-    addresses?: Address[],
-    phoneNumbers?: PhoneNumber[],
 }

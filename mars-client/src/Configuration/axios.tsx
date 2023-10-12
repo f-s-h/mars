@@ -11,14 +11,9 @@ const axiosInstance = axios.create({
 export const addAccessInterceptor = (accessToken: string) => {
     axiosInstance.interceptors.request.use(
         (config) => {
-            console.log(accessToken);
             if (accessToken) {
                 config.headers.Authorization = `Bearer ${accessToken}`;
             }
-    
-            console.log("Conig:");
-            console.log(config.headers);
-    
             return config;
         },
     );
