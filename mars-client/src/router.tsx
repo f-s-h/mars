@@ -17,6 +17,7 @@ export const Router = () => {
             <Route path="/notfound" element={<Error404/>}/>
             <Route path="/notimplemented" element={<Error501/>}/>
             <Route path="/admin" element={<Admin/>}/>
+            <Route path="*" element={<Error404/>}/>
     </Routes>
   )
 }
