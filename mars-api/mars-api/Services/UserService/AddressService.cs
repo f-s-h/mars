@@ -12,6 +12,14 @@ namespace mars_api.Services.UserService
             this.context = context;
         }
 
+        public AddressDTO? GetAddressById(Guid addressId)
+        {
+            return context.Addresses
+                .Where(a => a.Id == addressId)
+                .Select(a => a.AsDTO())
+                .FirstOrDefault();
+        }
+
         public ICollection<AddressDTO> GetAdressesForUserId(Guid userId)
         {
             return context.Addresses
