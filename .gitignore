@@ -4,5 +4,14 @@ mars-api/.vs
 mars-api/bin
 mars-api/obj
 
+mars-api/IdentityServer/bin
+mars-api/IdentityServer/obj
+
+mars-api/mars-api/bin
+mars-api/mars-api/obj
+
 mars-client/node_modules
 mars-client/.vs
+/mars-api/IdentityServer/IdentityServer.db
+/mars-api/IdentityServer/IdentityServer.db-shm
+/mars-api/IdentityServer/IdentityServer.db-wal
