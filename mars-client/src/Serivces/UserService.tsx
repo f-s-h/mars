@@ -1,4 +1,4 @@
-import axiosInstance from "../Configuration/axios"
+import axiosInstance, { addAccessInterceptor } from "../Configuration/axios"
 import { User, UserFormState } from "../models";
 
 const handleError = (error: any, errorMessage: string) => {
@@ -7,8 +7,9 @@ const handleError = (error: any, errorMessage: string) => {
     console.error(error);
 }
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (accessToken: string) => {
     try {
+        addAccessInterceptor(accessToken);
         const response = await axiosInstance.get(
             '/User/GetAllUsers'
         );

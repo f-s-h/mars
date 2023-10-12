@@ -5,6 +5,7 @@ import { Box } from '@mui/material'
 import React from 'react'
 import { useUser } from '../../Context/UserContext'
 import { UserFormState } from '../../models'
+import { OidcSecure } from '@axa-fr/react-oidc/'
 
 interface FormData {
     name: string,
@@ -52,7 +53,7 @@ export const CreateUser = () => {
     }
 
     return (
-        <>
+        <OidcSecure>
             <h1>Create User</h1>
             <Box>
                 <Form
@@ -85,6 +86,6 @@ export const CreateUser = () => {
                     </Form.Item>
                 </Form>
             </Box>
-        </>
+        </OidcSecure>
     )
 }
