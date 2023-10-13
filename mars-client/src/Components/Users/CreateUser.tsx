@@ -5,13 +5,21 @@ import { Box } from '@mui/material'
 import { useUser } from '../../Context/UserContext'
 import { UserFormState } from '../../models'
 import { OidcSecure, useOidcAccessToken } from '@axa-fr/react-oidc/'
-import { usePhoneNumber } from '../../Context/PhoneNumberContext'
+import { useEffect } from 'react'
 
 interface FormData {
     name: string,
     label: string,
     rules: Rule[],
+}
 
+interface FormValues {
+    title: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    phoneNumbers: string[],
+    addresses: string[],
 }
 
 const formData: FormData[] = [
@@ -36,35 +44,35 @@ const formData: FormData[] = [
         rules: [{ required: false }],
     },
     //TODO DateSelector Birthday
-    /*{
+    {
         name: "phoneNumber",
         label: "Phone number",
         rules: [{ required: false }],
     },
     // TODO Multiple phone numbers
     // TODO Address 
-    */
+
 ]
 
 export const CreateUser = () => {
-    const { accessToken } = useOidcAccessToken();
     const [form] = useForm();
     const {
         loading,
         createUser,
     } = useUser();
-    const {
-        createPhoneNumber,
-    } = usePhoneNumber();
 
-    const onFinish = async (values: any) => {
+    const onFinish = async (values: FormValues) => {
+        var user: UserFormState = {
+            title: values.title,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+        }
         console.log(values);
-        var userResponse = await createUser(accessToken, values as UserFormState);
+        var userResponse = await createUser(user);
         console.log(userResponse);
         //var addressResponse = null; //TODO
         //console.log(addressResponse);
-        //var phoneNumberResponse = await createPhoneNumber(accessToken, values as PhoneNumberState, userResponse.id);
-        //console.log(phoneNumberResponse);
     }
 
     return (

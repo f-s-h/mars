@@ -6,27 +6,35 @@ import { useOidcAccessToken } from "@axa-fr/react-oidc";
 interface UserContextProps {
     loading: boolean;
     users: User[];
-    getAllUsers: (accessToken: string) => Promise<User[]>;
-    createUser: (accessToken: string, user: UserFormState) => Promise<User>;
+    getAllUsers: () => Promise<User[]>;
+    getAllUsersDetail: () => Promise<User[]>;
+    createUser: (user: UserFormState) => Promise<User>;
+    getUserById: (id: string) => Promise<User>
+    getUserDetailById: (id: string) => Promise<User>
 }
 
 const Context = createContext<UserContextProps>({
     loading: false,
     users: [],
-    getAllUsers: (accessToken: string) => new Promise<User[]>(() => {}),
-    createUser: (accessToken: string, user: UserFormState) => new Promise<User>(() => {}),
+    getAllUsers: () => new Promise<User[]>(() => {}),
+    getAllUsersDetail: () => new Promise<User[]>(() => {}),
+    createUser: (user: UserFormState) => new Promise<User>(() => {}),
+    getUserById: (id: string) => new Promise<User>(() => {}),
+    getUserDetailById: (id: string) => new Promise<User>(() => {}),
 })
 
 export const UserContext: FC<{ children: ReactNode}> = (props) => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(false);
 
+    const {accessToken} = useOidcAccessToken();
+
     const handleError = (error: any) => {
         console.error("Error!");
         console.error(error);
     }
 
-    const getAllUsers = async (accessToken: string): Promise<User[]> => {
+    const getAllUsers = async (): Promise<User[]> => {
         setLoading(true);
         const response = await service.getAllUsers(accessToken).catch(handleError);
         if (response === undefined) {
@@ -40,7 +48,21 @@ export const UserContext: FC<{ children: ReactNode}> = (props) => {
         }
     }
 
-    const createUser = async (accessToken: string, user: UserFormState): Promise<User> => {
+    const getAllUsersDetail = async (): Promise<User[]> => {
+        setLoading(true);
+        const response = await service.getAllUsersDetail(accessToken).catch(handleError);
+        if (response === undefined) {
+            setLoading(false);
+            return new Promise<User[]>(() => {});
+        }
+        else {
+            setUsers(response);
+            setLoading(false);
+            return response as User[];
+        }
+    }
+
+    const createUser = async (user: UserFormState): Promise<User> => {
         setLoading(true);
         const response = await service.createUser(accessToken, user);
         if(response === undefined) {
@@ -54,12 +76,41 @@ export const UserContext: FC<{ children: ReactNode}> = (props) => {
         }
     }
 
+    const getUserById = async (id: string): Promise<User> => {
+        setLoading(true);
+        const response = await service.getUserById(accessToken, id);
+        if(response === undefined) {
+            setLoading(false);
+            return new Promise<User>(() => {});
+        }
+        else{
+            setLoading(false);
+            return response as User;
+        }
+    }
+
+    const getUserDetailById = async (id: string): Promise<User> => {
+        setLoading(true);
+        const response = await service.getUserDetailById(accessToken, id);
+        if(response === undefined) {
+            setLoading(false);
+            return new Promise<User>(() => {});
+        }
+        else{
+            setLoading(false);
+            return response as User;
+        }
+    }
+
     return (
         <Context.Provider
             value={{
                 loading,
                 users,
                 getAllUsers,
+                getAllUsersDetail,
+                getUserById,
+                getUserDetailById,
                 createUser,
             }}
         >

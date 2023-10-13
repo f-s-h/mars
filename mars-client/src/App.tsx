@@ -1,11 +1,11 @@
 import './App.css';
 import MenuBar from './Components/MenuBar/MenuBar';
-import {Layout} from 'antd'
+import { Layout } from 'antd'
 import { Router } from './router';
 import AppContext from './AppContext';
 import { OidcProvider } from '@axa-fr/react-oidc';
 import { ThemeProvider } from '@emotion/react';
-import { createTheme } from '@mui/material';
+import { theme } from './Configuration/theme';
 
 const configuration = {
   client_id: 'react-mars-client',
@@ -22,36 +22,27 @@ function App() {
 
   const { Content, Sider } = Layout;
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#001529",
-        light: "#1c3147",
-        dark: "#051321",
-        contrastText: "#A6ADB4",
-      }
-    },
-  })
-
   return (
     <ThemeProvider theme={theme}>
-    <OidcProvider configuration={configuration}>
-      <Layout style={{ minHeight: '100vh' }}>
-      <Sider>
-        <MenuBar />
-      </Sider>
-      <Layout>
-        <Content style={{
-          padding: "0 5vh 0 5vh",
-          color: theme.palette.primary.contrastText,
-        }}>
-          <AppContext>
-            <Router/>
-          </AppContext>
-        </Content>
-      </Layout>
-    </Layout>
-    </OidcProvider>
+      <OidcProvider configuration={configuration}>
+        <Layout>
+          <Sider>
+            <MenuBar />
+          </Sider>
+          <Layout>
+            <Content style={{
+              padding: "0 5vh 0 5vh",
+              height: "100vh",
+              background: theme.palette.secondary.main,
+              color: theme.palette.secondary.light,
+            }}>
+              <AppContext>
+                <Router />
+              </AppContext>
+            </Content>
+          </Layout>
+        </Layout>
+      </OidcProvider>
     </ThemeProvider>
   );
 }

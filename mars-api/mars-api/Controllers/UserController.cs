@@ -29,10 +29,33 @@ namespace mars_api.Controllers
             return Ok(users);
         }
 
+        [HttpGet]
+        public ActionResult<ICollection<UserDTO>> GetAllUsersDetail()
+        {
+            var users = userService.GetAllUsersDetail();
+            if (users.IsNullOrEmpty())
+            {
+                return NoContent();
+            }
+            return Ok(users);
+        }
+
         [HttpGet("{userId}")]
         public ActionResult<ICollection<UserDTO>> GetUserById([FromRoute] Guid userId)
         {
             var user = userService.GetUserById(userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
+        [HttpGet("{userId}")]
+        public ActionResult<ICollection<UserDTO>> GetUserDetailById([FromRoute] Guid userId)
+        {
+            var user = userService.GetUserDetailById(userId);
 
             if (user == null)
             {
