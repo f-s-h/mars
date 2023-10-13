@@ -7,6 +7,7 @@ import { Error501 } from './Components/Error/Error501'
 import { CreateUser } from './Components/Users/CreateUser'
 import { withOidcSecure } from '@axa-fr/react-oidc'
 import Admin from './Pages/Admin'
+import { UserDetail } from './Components/Users/UserDetail/UserDetail'
 
 export const Router = () => {
   return (
@@ -14,6 +15,7 @@ export const Router = () => {
             <Route path="/" element={<Home/>}/>
             <Route path="/users" element={<Users/>}/>
             <Route path="/users/create" element={<CreateUser/>}/>
+            <Route path="/user/:userId" element={<UserDetail/>}/>
             <Route path="/notfound" element={<Error404/>}/>
             <Route path="/notimplemented" element={<Error501/>}/>
             <Route path="/admin" element={<Admin/>}/>
