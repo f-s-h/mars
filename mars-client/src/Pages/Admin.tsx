@@ -1,8 +1,6 @@
-import { OidcSecure, useOidcAccessToken, useOidcIdToken, useOidcUser } from '@axa-fr/react-oidc'
-import React from 'react'
+import { OidcSecure, useOidcAccessToken, useOidcIdToken } from '@axa-fr/react-oidc'
 
 const Admin = () => {
-  const {oidcUser, oidcUserLoadingState} = useOidcUser();
   const {accessToken} = useOidcAccessToken();
   const {idToken} = useOidcIdToken();
   

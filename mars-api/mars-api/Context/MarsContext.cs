@@ -11,10 +11,6 @@ namespace mars_api.Context
         public virtual DbSet<Country> Countries => Set<Country>();
 
         public MarsContext(DbContextOptions options)
-            : base(options)
-        {
-
-        }
-
+            : base(options){ }
     }
 }

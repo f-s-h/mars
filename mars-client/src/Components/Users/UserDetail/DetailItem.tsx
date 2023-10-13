@@ -1,6 +1,4 @@
-import React from 'react'
 import { Box } from '@mui/material'
-import { Address, PhoneNumber } from '../../../models'
 
 interface DetailItemProps {
     name: string,

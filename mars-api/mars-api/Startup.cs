@@ -58,7 +58,6 @@ namespace mars_api
 
         public static WebApplication ConfiguirePipeline(this WebApplication app)
         {
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

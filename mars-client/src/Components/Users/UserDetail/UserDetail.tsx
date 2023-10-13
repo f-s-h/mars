@@ -30,8 +30,6 @@ export const UserDetail = (props: UserDetailProps) => {
         }
     }
 
-
-
     return (
         <>
             <h1>Details</h1>
@@ -72,7 +70,6 @@ export const UserDetail = (props: UserDetailProps) => {
                                 </>
                             )
                         }) : <></>
-
                     }
                 </Box>
             }

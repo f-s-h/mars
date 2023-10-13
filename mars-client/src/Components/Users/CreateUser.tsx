@@ -4,8 +4,7 @@ import { useForm } from 'antd/es/form/Form'
 import { Box } from '@mui/material'
 import { useUser } from '../../Context/UserContext'
 import { UserFormState } from '../../models'
-import { OidcSecure, useOidcAccessToken } from '@axa-fr/react-oidc/'
-import { useEffect } from 'react'
+import { OidcSecure } from '@axa-fr/react-oidc/'
 
 interface FormData {
     name: string,
@@ -68,11 +67,7 @@ export const CreateUser = () => {
             lastName: values.lastName,
             email: values.email,
         }
-        console.log(values);
         var userResponse = await createUser(user);
-        console.log(userResponse);
-        //var addressResponse = null; //TODO
-        //console.log(addressResponse);
     }
 
     return (

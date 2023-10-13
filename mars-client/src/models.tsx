@@ -1,5 +1,3 @@
-import { StringMappingType } from "typescript";
-
 export interface Country {
     id: string,
     name: string,

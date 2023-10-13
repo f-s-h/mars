@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUser } from '../../Context/UserContext'
-import { Button, Spin, Table, theme } from 'antd';
+import { Spin, Table } from 'antd';
 import { Box } from '@mui/material';
 import { Searchbar } from './Searchbar';
 import { User } from '../../models';
 import { ColumnsType } from 'antd/lib/table';
-import { Link } from 'react-router-dom';
-import { EyeOutlined, EditOutlined } from '@ant-design/icons';
 import { useTheme } from '@mui/material/styles';
 import { UserInteractionBar } from './UserInteractionBar';
 
@@ -18,7 +16,7 @@ export const UsersOverview = () => {
 
   useEffect(() => {
     getAllUsers();
-  }, [])
+  }, []);
 
   useEffect(() => {
     setFilteredUsers(users);
@@ -48,7 +46,7 @@ export const UsersOverview = () => {
     {
       title: 'Options',
       dataIndex: 'id',
-      render: (id, record) => {
+      render: (id) => {
         return (
           <>
             <UserInteractionBar id={id}/>
