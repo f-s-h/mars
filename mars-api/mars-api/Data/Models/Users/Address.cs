@@ -12,5 +12,7 @@ namespace mars_api.Data.Models.Users
         public string PostalCode { get; set; } = string.Empty;
         public Guid? CountryId { get; set; }
 
+        public Country Country { get; set; } = new Country();
+
     }
 }

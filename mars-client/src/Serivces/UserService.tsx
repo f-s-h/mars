@@ -22,6 +22,21 @@ export const getAllUsers = async (accessToken: string) => {
     }
 };
 
+export const getAllUsersDetail = async (accessToken: string) => {
+    try {
+        addAccessInterceptor(accessToken);
+        const response = await axiosInstance.get(
+            '/User/GetAllUsersDetail'
+        );
+        return response.data;
+    }
+    catch (error) {
+        var errorMessage = "Couldn't get all users with details."
+        handleError(error, errorMessage);
+        throw error;
+    }
+};
+
 export const createUser = async (accessToken: string, user: UserFormState): Promise<User> => {
     try {
         addAccessInterceptor(accessToken);
@@ -32,8 +47,38 @@ export const createUser = async (accessToken: string, user: UserFormState): Prom
         return response.data;
     }    
     catch (error) {
-        var errorMessage = "Could not create user."
+        var errorMessage = "Could not create user.";
         handleError(error, errorMessage);
         throw error;
     }
 } 
+
+export const getUserById = async (accessToken: string, id: string): Promise<User> => {
+    try {
+        addAccessInterceptor(accessToken);
+        const response = await axiosInstance.get(
+            `User/GetUserById/${id}`
+        )
+        return response.data;
+    }
+    catch (error) {
+        var errorMessage = "Could not get user.";
+        handleError(error, errorMessage);
+        throw error;
+    }
+}
+
+export const getUserDetailById = async (accessToken: string, id: string): Promise<User> => {
+    try {
+        addAccessInterceptor(accessToken);
+        const response = await axiosInstance.get(
+            `User/GetUserDetailById/${id}`
+        )
+        return response.data;
+    }
+    catch (error) {
+        var errorMessage = "Could not find user with detail.";
+        handleError(error, errorMessage);
+        throw error;
+    }
+}

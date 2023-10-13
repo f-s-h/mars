@@ -13,6 +13,16 @@ export interface Address {
     city: string,
     postalCode: string,
     countryId: string,   
+    country: Country,
+}
+
+export interface AddressFormState {
+    userId: string,
+    street: string,
+    houseNumber: string,
+    city: string,
+    postalCode: string,
+    countryId: string,
 }
 
 export interface PhoneNumber {
@@ -21,26 +31,28 @@ export interface PhoneNumber {
     number: string,
 }
 
-export interface PhoneNumberState {
+export interface PhoneNumberFormState {
     userId: string,
     number: string,
 }
 
 export interface User {
     id: string,
-    username: string, 
-    email: string,
     title: string,
     firstName: string,
     lastName: string,
+    email: string,
     birthday: Date,
+    addresses: Address[],
+    phoneNumbers: PhoneNumber[],
 }
 
 export interface UserFormState {
-    username?: string, 
-    email?: string,
     title?: string,
     firstName: string,
     lastName: string,
+    email?: string,
     birthday?: Date,
+    phoneNumbers?: PhoneNumberFormState[],
+    addresses?: AddressFormState[], 
 }

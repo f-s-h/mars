@@ -3,6 +3,7 @@ import { Menu, MenuProps } from "antd"
 import { Link } from "react-router-dom";
 import { useOidc } from "@axa-fr/react-oidc";
 import { Profile } from "./Profile";
+import { Box } from "@mui/material" 
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -68,10 +69,17 @@ const MenuBar: React.FC = () => {
   const {isAuthenticated} = useOidc();
 
   return (
-    <>
+    <Box
+      sx={{
+        position: "fixed",
+      }}
+    >
       <Menu
         onClick={onClick}
-        style={{ width: "21vh" }}
+        style={{ 
+          height: "100vh",
+          width: "21vh" ,
+        }}
         //defaultSelectedKeys={['home']}
         mode="inline"
         items={items}
@@ -99,7 +107,7 @@ const MenuBar: React.FC = () => {
         }
       </Box>*/}
       <Profile/>
-    </>
+    </Box>
   )
 }
 

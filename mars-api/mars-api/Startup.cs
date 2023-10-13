@@ -54,8 +54,6 @@ namespace mars_api
         private static void AddScopesService(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<IAddressService, AddressService>();
-            builder.Services.AddScoped<IPhoneNumberService, PhoneNumberService>();
         }
 
         public static WebApplication ConfiguirePipeline(this WebApplication app)
@@ -68,6 +66,7 @@ namespace mars_api
                 app.UseSwaggerUI();
             }
 
+            app.UseHttpLogging();
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
