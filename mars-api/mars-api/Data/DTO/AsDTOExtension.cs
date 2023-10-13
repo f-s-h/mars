@@ -15,6 +15,8 @@ namespace mars_api.Data.DTO
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Birthday = user.Birthday,
+                PhoneNumbers = user.PhoneNumbers.Select(p => p.AsDTO()).ToList(),
+                Addresses = user.Addresses.Select(a => a.AsDTO()).ToList(),
             };
         }
 
@@ -29,6 +31,7 @@ namespace mars_api.Data.DTO
                 City = address.City,
                 PostalCode = address.PostalCode,
                 CountryId = address.CountryId,
+                Country = address.Country.AsDTO(),
             };
         }
 

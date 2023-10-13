@@ -16,6 +16,8 @@ namespace mars_api.Data.Models
                 FirstName = userDTO.FirstName,
                 LastName = userDTO.LastName,
                 Birthday = userDTO.Birthday,
+                Addresses = userDTO.Addresses.Select(a => a.AsModel()).ToList(),
+                PhoneNumbers = userDTO.PhoneNumbers.Select(p => p.AsModel()).ToList(),
             };
         }
 

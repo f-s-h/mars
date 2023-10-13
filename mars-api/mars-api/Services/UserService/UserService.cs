@@ -3,24 +3,30 @@ using mars_api.Data.DTO;
 using mars_api.Data.DTO.Users;
 using mars_api.Data.Models;
 using mars_api.Data.Models.Users;
+using Microsoft.EntityFrameworkCore;
 
 namespace mars_api.Services.UserService
 {
     public class UserService : IUserService
     {
         private readonly MarsContext context;
-        private readonly IPhoneNumberService phoneNumberService;
-        private readonly IAddressService addressService;
-        public UserService(MarsContext context, IPhoneNumberService phoneNumberService, IAddressService addressService)
+        public UserService(MarsContext context)
         {
             this.context = context;
-            this.addressService = addressService;
-            this.phoneNumberService = phoneNumberService;
         }
 
         public ICollection<UserDTO> GetAllUsers()
         {
             return context.Users
+                .Select(u => u.AsDTO())
+                .ToList();
+        }
+
+        public ICollection<UserDTO> GetAllUsersDetail()
+        {
+            return context.Users
+                .Include(u => u.PhoneNumbers)
+                .Include(u => u.Addresses)
                 .Select(u => u.AsDTO())
                 .ToList();
         }
@@ -33,12 +39,32 @@ namespace mars_api.Services.UserService
                 .FirstOrDefault();
         }
 
+        public UserDTO? GetUserDetailById(Guid userId)
+        {
+            return context.Users
+                .Include(u => u.PhoneNumbers)
+                .Include(u => u.Addresses)
+                .Where(u => u.Id == userId)
+                .Select(u => u.AsDTO())
+                .FirstOrDefault();
+        }
+
         public UserDTO CreateUser(UserDTO userDTO)
         {
-            Guid id = Guid.NewGuid();
-            userDTO.Id = id;
-            User user = userDTO.AsModel();
+            Guid userId = Guid.NewGuid();
+            userDTO.Id = userId;
+            foreach (AddressDTO address in userDTO.Addresses)
+            {
+                Guid addressId = Guid.NewGuid();
+                address.Id = addressId;
+            }
+            foreach (PhoneNumberDTO phoneNumber in userDTO.PhoneNumbers)
+            {
+                Guid phoneNumberId = Guid.NewGuid();
+                phoneNumber.Id = phoneNumberId;
+            }
 
+            User user = userDTO.AsModel();
             context.Users.Add(user);
             context.SaveChanges();
 
