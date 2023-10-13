@@ -1,7 +1,8 @@
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd"
-import { Box } from "@mui/material"
 import { Link } from "react-router-dom";
+import { useOidc } from "@axa-fr/react-oidc";
+import { Profile } from "./Profile";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -62,9 +63,9 @@ const menuItems = [
 const MenuBar: React.FC = () => {
 
   const onClick: MenuProps['onClick'] = (e) => {
-    //console.log('click ', e);
   };
 
+  const {isAuthenticated} = useOidc();
 
   return (
     <>
@@ -97,6 +98,7 @@ const MenuBar: React.FC = () => {
           })
         }
       </Box>*/}
+      <Profile/>
     </>
   )
 }

@@ -22,8 +22,9 @@ export const getAllUsers = async (accessToken: string) => {
     }
 };
 
-export const createUser = async (user: UserFormState): Promise<User> => {
+export const createUser = async (accessToken: string, user: UserFormState): Promise<User> => {
     try {
+        addAccessInterceptor(accessToken);
         const response = await axiosInstance.post<User>(
             'User/CreateUser',
             user

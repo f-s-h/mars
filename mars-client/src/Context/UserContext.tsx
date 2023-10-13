@@ -7,14 +7,14 @@ interface UserContextProps {
     loading: boolean;
     users: User[];
     getAllUsers: (accessToken: string) => Promise<User[]>;
-    createUser: (user: UserFormState) => Promise<User>;
+    createUser: (accessToken: string, user: UserFormState) => Promise<User>;
 }
 
 const Context = createContext<UserContextProps>({
     loading: false,
     users: [],
     getAllUsers: (accessToken: string) => new Promise<User[]>(() => {}),
-    createUser: (user: UserFormState) => new Promise<User>(() => {}),
+    createUser: (accessToken: string, user: UserFormState) => new Promise<User>(() => {}),
 })
 
 export const UserContext: FC<{ children: ReactNode}> = (props) => {
@@ -40,9 +40,9 @@ export const UserContext: FC<{ children: ReactNode}> = (props) => {
         }
     }
 
-    const createUser = async (user: UserFormState): Promise<User> => {
+    const createUser = async (accessToken: string, user: UserFormState): Promise<User> => {
         setLoading(true);
-        const response = await service.createUser(user);
+        const response = await service.createUser(accessToken, user);
         if(response === undefined) {
             setLoading(false);
             return new Promise<User>(() => {});

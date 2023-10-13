@@ -10,9 +10,6 @@ export const UsersOverview = () => {
   const { loading, users, getAllUsers } = useUser();
   const {accessToken} = useOidcAccessToken();
   const [ filteredUsers, setFilteredUsers ] = useState<User[]>([])
-  const {oidcUser} = useOidcUser();
-
-  console.log();
 
   useEffect(() => {
     getAllUsers(accessToken);

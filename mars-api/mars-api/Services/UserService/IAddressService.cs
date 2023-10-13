@@ -6,5 +6,6 @@ namespace mars_api.Services.UserService
     {
         public ICollection<AddressDTO> GetAllAdresses();
         public ICollection<AddressDTO> GetAdressesForUserId(Guid userId);
+        public AddressDTO? GetAddressById(Guid addressId);
     }
 }

@@ -21,6 +21,11 @@ export interface PhoneNumber {
     number: string,
 }
 
+export interface PhoneNumberState {
+    userId: string,
+    number: string,
+}
+
 export interface User {
     id: string,
     username: string, 
@@ -29,8 +34,6 @@ export interface User {
     firstName: string,
     lastName: string,
     birthday: Date,
-    addresses: Address[],
-    phoneNumbers: PhoneNumber[],
 }
 
 export interface UserFormState {
@@ -40,6 +43,4 @@ export interface UserFormState {
     firstName: string,
     lastName: string,
     birthday?: Date,
-    addresses?: Address[],
-    phoneNumbers?: PhoneNumber[],
 }
