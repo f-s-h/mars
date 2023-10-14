@@ -10,11 +10,11 @@ import { theme } from './Configuration/theme';
 const configuration = {
   client_id: 'react-mars-client',
   redirect_uri: window.location.origin + "/authentication/callback",
-  silent_redirect_uri: window.location.origin + "/authentication/silent-callback",
+  //silent_redirect_uri: window.location.origin + "/authentication/silent-callback",
   scope: 'openid profile mars-api',
   authority: 'https://localhost:5001',
-  service_worker_realtive_url: '/OidcServiceWorker.js',
-  service_worker_only: true,
+  //service_worker_realtive_url: '/OidcServiceWorker.js',
+  //service_worker_only: true,
   client_secret: "secret",
 }
 
