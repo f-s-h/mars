@@ -4,6 +4,7 @@ mars-api/.vs
 
 mars-api/IdentityServer/bin
 mars-api/IdentityServer/obj
+mars-api/IdentityServer/keys
 
 mars-api/mars-api/.vs
 mars-api/mars-api/bin
