@@ -10,6 +10,7 @@
   - View User
   - Create User
   - Find all Users
+  - Delete User
 
 - Event
   - Create Event
@@ -17,6 +18,14 @@
   - Timeline with upcoming Events
   (- Recent Events
       - Add Images to Events, add Recap )
+
+- Roles
+  - Create Role
+  - Edit Role
+  - View Role
+  - Delete Role
+
+- Statistics
  
 - Finances
 
