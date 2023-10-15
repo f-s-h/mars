@@ -56,7 +56,7 @@ namespace mars_api
             builder.Services.AddScoped<IUserService, UserService>();
         }
 
-        public static WebApplication ConfiguirePipeline(this WebApplication app)
+        public static WebApplication ConfigurePipeline(this WebApplication app)
         {
             if (app.Environment.IsDevelopment())
             {
