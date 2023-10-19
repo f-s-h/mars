@@ -65,7 +65,6 @@ export const CreateUser = () => {
             title: values.title,
             firstName: values.firstName,
             lastName: values.lastName,
-            email: values.email,
         }
         var userResponse = await createUser(user);
     }
