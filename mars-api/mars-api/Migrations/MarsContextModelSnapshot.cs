@@ -69,6 +69,26 @@ namespace mars_api.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("mars_api.Data.Models.Users.EMail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EMail");
+                });
+
             modelBuilder.Entity("mars_api.Data.Models.Users.PhoneNumber", b =>
                 {
                     b.Property<Guid>("Id")
@@ -98,9 +118,6 @@ namespace mars_api.Migrations
                     b.Property<DateOnly?>("Birthday")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -109,7 +126,13 @@ namespace mars_api.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Prefix")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Salutation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Suffix")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -132,6 +155,15 @@ namespace mars_api.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("mars_api.Data.Models.Users.EMail", b =>
+                {
+                    b.HasOne("mars_api.Data.Models.Users.User", null)
+                        .WithMany("Emails")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("mars_api.Data.Models.Users.PhoneNumber", b =>
                 {
                     b.HasOne("mars_api.Data.Models.Users.User", null)
@@ -144,6 +176,8 @@ namespace mars_api.Migrations
             modelBuilder.Entity("mars_api.Data.Models.Users.User", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("Emails");
 
                     b.Navigation("PhoneNumbers");
                 });

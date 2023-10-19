@@ -34,13 +34,21 @@ export interface PhoneNumberFormState {
     number: string,
 }
 
+export interface Email {
+    id: string,
+    userId: string,
+    email: string,
+}
+
 export interface User {
     id: string,
-    title: string,
+    salutation: string,
+    prefix: string,
     firstName: string,
     lastName: string,
-    email: string,
+    suffix: string,
     birthday: Date,
+    emails: Email[],
     addresses: Address[],
     phoneNumbers: PhoneNumber[],
 }
@@ -49,8 +57,8 @@ export interface UserFormState {
     title?: string,
     firstName: string,
     lastName: string,
-    email?: string,
     birthday?: Date,
+    emails?: Email[],
     phoneNumbers?: PhoneNumberFormState[],
     addresses?: AddressFormState[], 
 }

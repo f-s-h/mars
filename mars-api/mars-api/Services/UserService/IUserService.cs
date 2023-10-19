@@ -8,6 +8,6 @@ namespace mars_api.Services.UserService
         public ICollection<UserDTO> GetAllUsersDetail();
         public UserDTO? GetUserById(Guid userId);
         public UserDTO? GetUserDetailById(Guid userId);
-        public UserDTO CreateUser(UserDTO userDTO);
+        public UserDTO? CreateUser(UserDTO userDTO);
     }
 }

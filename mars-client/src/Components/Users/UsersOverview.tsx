@@ -34,16 +34,6 @@ export const UsersOverview = () => {
       key: 'lastName'
     },
     {
-      title: 'Username',
-      dataIndex: 'userName',
-      key: 'userName',
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
       title: 'Options',
       dataIndex: 'id',
       render: (id) => {
