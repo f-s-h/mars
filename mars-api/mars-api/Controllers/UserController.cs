@@ -67,8 +67,12 @@ namespace mars_api.Controllers
         [HttpPost]
         public ActionResult<UserDTO> CreateUser([FromBody] UserDTO userDTO)
         {
-            userDTO = userService.CreateUser(userDTO);
-            return Ok(userDTO);
+            var createdUser = userService.CreateUser(userDTO);
+            if(createdUser == null)
+            {
+                return BadRequest();
+            }
+            return Ok(createdUser);
         }
     }
 }

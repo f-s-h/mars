@@ -10,11 +10,13 @@ namespace mars_api.Data.DTO
             return new UserDTO()
             {
                 Id = user.Id,
-                Email = user.Email,
-                Title = user.Title,
+                Salutation = user.Salutation,
+                Prefix = user.Prefix,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Suffix = user.Suffix,
                 Birthday = user.Birthday,
+                Emails = user.Emails.Select(e => e.AsDTO()).ToList(),
                 PhoneNumbers = user.PhoneNumbers.Select(p => p.AsDTO()).ToList(),
                 Addresses = user.Addresses.Select(a => a.AsDTO()).ToList(),
             };
@@ -51,6 +53,16 @@ namespace mars_api.Data.DTO
             {
                 Id = country.Id,
                 Name = country.Name,
+            };
+        }
+
+        public static EMailDTO AsDTO(this EMail email)
+        {
+            return new EMailDTO()
+            {
+                Id = email.Id,
+                UserId = email.UserId,
+                Email = email.Email,
             };
         }
     }

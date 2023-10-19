@@ -27,6 +27,7 @@ namespace mars_api.Services.UserService
             return context.Users
                 .Include(u => u.PhoneNumbers)
                 .Include(u => u.Addresses)
+                .Include(u => u.Emails)
                 .Select(u => u.AsDTO())
                 .ToList();
         }
@@ -44,12 +45,13 @@ namespace mars_api.Services.UserService
             return context.Users
                 .Include(u => u.PhoneNumbers)
                 .Include(u => u.Addresses)
+                .Include(u => u.Emails)
                 .Where(u => u.Id == userId)
                 .Select(u => u.AsDTO())
                 .FirstOrDefault();
         }
 
-        public UserDTO CreateUser(UserDTO userDTO)
+        public UserDTO? CreateUser(UserDTO userDTO)
         {
             Guid userId = Guid.NewGuid();
             userDTO.Id = userId;
@@ -63,13 +65,18 @@ namespace mars_api.Services.UserService
                 Guid phoneNumberId = Guid.NewGuid();
                 phoneNumber.Id = phoneNumberId;
             }
+            foreach (EMailDTO emailDTO in userDTO.Emails)
+            {
+                Guid emailId = Guid.NewGuid();
+                emailDTO.Id = emailId;
+            }
 
             User user = userDTO.AsModel();
             context.Users.Add(user);
             context.SaveChanges();
 
             // Returns userDTO with new ids
-            return userDTO;
+            return GetUserDetailById(userId);
         }
     }
 }

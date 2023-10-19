@@ -44,10 +44,15 @@ export const UserDetail = (props: UserDetailProps) => {
                         padding: "2vh",
                     }}
                 >
-                    <DetailItem name={"Title"} value={user.title} />
                     <DetailItem name={"First name"} value={user.firstName} />
                     <DetailItem name={"Last name"} value={user.lastName} />
-                    <DetailItem name={"Email"} value={user.email} />
+                    {user.emails?
+                        user.emails.map((email, index) => {
+                            return(
+                                <DetailItem name={`Email ${index}:`} value={email.email}></DetailItem>
+                            )
+                        }) : <></>
+                    }
                     {user.phoneNumbers ?
                         user.phoneNumbers.map((phoneNumber, index) => {
                             return (
