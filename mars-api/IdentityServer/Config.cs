@@ -32,6 +32,7 @@ public static class Config
                 RequirePkce = true,
                 AllowedGrantTypes = GrantTypes.Code,
                 AllowAccessTokensViaBrowser = true,
+                AllowOfflineAccess = true,
                 RequireConsent = false,
                 AccessTokenLifetime = 60 * 30,
                 RedirectUris = {"http://localhost:3000/authentication/callback"},
@@ -40,6 +41,7 @@ public static class Config
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.OfflineAccess,
                     "mars-api"
                 },
                 AllowedCorsOrigins = new List<string>
