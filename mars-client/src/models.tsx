@@ -15,7 +15,6 @@ export interface Address {
 }
 
 export interface AddressFormState {
-    userId: string,
     street: string,
     houseNumber: string,
     city: string,
@@ -30,13 +29,16 @@ export interface PhoneNumber {
 }
 
 export interface PhoneNumberFormState {
-    userId: string,
     number: string,
 }
 
 export interface Email {
     id: string,
     userId: string,
+    email: string,
+}
+
+export interface EmailFormState {
     email: string,
 }
 
