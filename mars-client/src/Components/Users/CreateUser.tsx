@@ -1,73 +1,125 @@
-import { Button, Form, Input, Spin } from 'antd'
-import { Rule } from 'antd/es/form'
-import { useForm } from 'antd/es/form/Form'
+import { DatePicker, Spin } from 'antd'
 import { Box } from '@mui/material'
 import { useUser } from '../../Context/UserContext'
-import { UserFormState } from '../../models'
+import { Address, Email, PhoneNumber, User } from '../../models'
 import { OidcSecure } from '@axa-fr/react-oidc/'
+import { ComponentType, useState } from 'react'
+import CreateUserObjects from './UserDetail/CreateUser/CreateUserObjects'
+import FormInput from '../Form/FormInput'
+import AddressInput from '../Form/AddressInput'
 
-interface FormData {
-    name: string,
+interface FormObject {
     label: string,
-    rules: Rule[],
+    setValue(value: any): void,
 }
 
-interface FormValues {
-    title: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumbers: string[],
-    addresses: string[],
+interface FormObjectArray {
+    label: string,
+    values: any[],
+    setValues(values: any[]): void,
+    objectForm: ComponentType<{
+        setValue: (value: any) => void,
+    }>,
 }
-
-const formData: FormData[] = [
-    {
-        name: "title",
-        label: "Title",
-        rules: [{ required: false }]
-    },
-    {
-        name: "firstName",
-        label: "Firstname",
-        rules: [{ required: true }]
-    },
-    {
-        name: "lastName",
-        label: "Lastname",
-        rules: [{ required: true }]
-    },
-    {
-        name: "email",
-        label: "Email",
-        rules: [{ required: false }],
-    },
-    //TODO DateSelector Birthday
-    {
-        name: "phoneNumber",
-        label: "Phone number",
-        rules: [{ required: false }],
-    },
-    // TODO Multiple phone numbers
-    // TODO Address 
-
-]
 
 export const CreateUser = () => {
-    const [form] = useForm();
+    const [newUser, setNewUser] = useState<User>({} as User);
     const {
         loading,
         createUser,
     } = useUser();
 
-    const onFinish = async (values: FormValues) => {
-        var user: UserFormState = {
-            title: values.title,
-            firstName: values.firstName,
-            lastName: values.lastName,
-        }
-        var userResponse = await createUser(user);
+    const onSubmit = async () => {
+        var userResponse = await createUser(newUser);
+        console.log(userResponse);
+        setNewUser({} as User);
     }
+
+    const data: FormObject[] = [
+        {
+            label: "Salutation",
+            setValue: (value: any) => {
+                setNewUser({
+                    ...newUser,
+                    salutation: value,
+                })
+            }
+        },
+        {
+            label: "Prefix",
+            setValue: (value: any) => {
+                setNewUser({
+                    ...newUser,
+                    prefix: value,
+                })
+            }
+        },
+        {
+            label: "First Name",
+            setValue(value: any) {
+                setNewUser({
+                    ...newUser,
+                    firstName: value,
+                })
+            },
+        },
+        {
+            label: "Last Name",
+            setValue(value: any) {
+                setNewUser({
+                    ...newUser,
+                    lastName: value,
+                })
+            },
+        },
+        {
+            label: "Suffix",
+            setValue(value: any) {
+                setNewUser({
+                    ...newUser,
+                    suffix: value,
+                })
+            },
+        },
+    ]
+
+    const dataArrays: FormObjectArray[] = [
+        {
+            label: "Emails",
+            values: newUser.emails? newUser.emails.map((value) => (value.email)) : [],
+            setValues(values: any[]) {
+                setNewUser({
+                    ...newUser,
+                    emails: values.map((value) => ({email: value} as Email)),
+                })
+            },
+            objectForm: FormInput,
+        },
+        {
+            label: "Phonenumbers",
+            values: newUser.phoneNumbers? newUser.phoneNumbers.map((value) => (value.number)) : [],
+            setValues(values: any[]) {
+                setNewUser({
+                    ...newUser,
+                    phoneNumbers: values.map((value) => ({number: value} as PhoneNumber)),
+                })
+            },
+            objectForm: FormInput,
+        },
+        {
+            label: "Address",
+            values: [],
+            setValues(values: any[]) {
+                console.log("Create User");
+                console.log(values);
+                setNewUser({
+                    ...newUser,
+                    addresses: values,
+                })
+            },
+            objectForm: AddressInput,
+        }   
+    ]
 
     return (
         <OidcSecure>
@@ -76,37 +128,35 @@ export const CreateUser = () => {
                 <Spin />
                 :
                 <Box>
-                    <Form
-                        form={form}
-                        layout='horizontal'
-                        labelCol={{
-                            span: 4
-                        }}
-                        wrapperCol={{
-                            span: 14
-                        }}
-                        style={{
-                            maxWidth: 600
-                        }}
-                        onFinish={onFinish}
-                    >
-                        {
-                            formData.map((item) => {
-                                return (
-                                    <Form.Item name={item.name} label={item.label} rules={item.rules}>
-                                        <Input />
-                                    </Form.Item>
-                                );
-                            })
-                        }
-                        <Form.Item>
-                            <Button type='primary' htmlType='submit'>
-                                Submit
-                            </Button>
-                        </Form.Item>
-                    </Form>
+                    {data ?
+                        data.map(({ label, setValue }) => {
+                            return (
+                                <>
+                                    <FormInput label={label} setValue={setValue}></FormInput>
+                                </>
+                            )
+                        })
+                        : <></>
+                    }
+                    <label>Birthday</label>
+                    {/**TODO */}
+                    <Box><DatePicker onSelect={() => {}/*(e) => setNewUser({...newUser, birthday: e.toDate()})*/} format={'DD.MM.YYYY'}/></Box>
+                    {dataArrays ?
+                        dataArrays.map(({ label, values, setValues, objectForm }) => {
+                            return (
+                                <>
+                                    <CreateUserObjects label={label} values={values} setValues={setValues} objectForm={objectForm} />
+                                </>
+                            )
+                        })
+                        : <></>
+                    }
+                    <button onClick={onSubmit}>Finish</button>
                 </Box>
             }
+            <Box>
+
+            </Box>
         </OidcSecure>
     )
 }
