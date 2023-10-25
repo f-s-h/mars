@@ -1,10 +1,23 @@
+import { toast } from "react-toastify";
 import axiosInstance, { addAccessInterceptor } from "../Configuration/axios"
 import { User, UserFormState } from "../models";
 
 const handleError = (error: any, errorMessage: string) => {
     // TODO: Throw toast error
-    console.error(errorMessage);
     console.error(error);
+    toast.error(errorMessage);
+}
+
+const handleSuccess = (successMessage: string) => {
+    console.log("Success");
+    toast.success(successMessage, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "light",
+    });
 }
 
 export const getAllUsers = async (accessToken: string) => {
@@ -44,6 +57,8 @@ export const createUser = async (accessToken: string, user: UserFormState): Prom
             'User/CreateUser',
             user
         )
+        var successMessage = "Created User successfully.";
+        handleSuccess(successMessage);
         return response.data;
     }    
     catch (error) {

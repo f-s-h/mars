@@ -6,6 +6,8 @@ import AppContext from './AppContext';
 import { OidcProvider } from '@axa-fr/react-oidc';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './Configuration/theme';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const configuration = {
   client_id: 'react-mars-client',
@@ -23,36 +25,39 @@ function App() {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <OidcProvider configuration={configuration}>
-        <Layout>
-          <Sider
-            width={"12vw"}
-            style={{
-              overflow: "auto",
-              height: "100vh",
-              left: 0
-            }}
-          >
-            <MenuBar />
-          </Sider>
-
+    <>
+      <ThemeProvider theme={theme}>
+        <OidcProvider configuration={configuration}>
           <Layout>
-            <Content style={{
-              padding: "0 5vh 0 5vh",
-              height: "100vh",
-              background: theme.palette.secondary.main,
-              color: theme.palette.secondary.light,
-              overflow: "auto",
-            }}>
-              <AppContext>
-                <Router />
-              </AppContext>
-            </Content>
+            <Sider
+              width={"12vw"}
+              style={{
+                overflow: "auto",
+                height: "100vh",
+                left: 0
+              }}
+            >
+              <MenuBar />
+            </Sider>
+
+            <Layout>
+              <Content style={{
+                padding: "0 5vh 0 5vh",
+                height: "100vh",
+                background: theme.palette.secondary.main,
+                color: theme.palette.secondary.light,
+                overflow: "auto",
+              }}>
+                <AppContext>
+                  <Router />
+                </AppContext>
+              </Content>
+            </Layout>
           </Layout>
-        </Layout>
-      </OidcProvider>
-    </ThemeProvider>
+        </OidcProvider>
+      </ThemeProvider>
+      <ToastContainer />
+    </>
   );
 }
 
