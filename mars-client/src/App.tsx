@@ -21,9 +21,7 @@ const configuration = {
 function App() {
 
   const { Content, Sider } = Layout;
-
-
-
+  
   return (
     <>
       <ThemeProvider theme={theme}>
