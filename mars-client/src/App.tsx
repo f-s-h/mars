@@ -26,15 +26,24 @@ function App() {
     <ThemeProvider theme={theme}>
       <OidcProvider configuration={configuration}>
         <Layout>
-          <Sider>
+          <Sider
+            width={"12vw"}
+            style={{
+              overflow: "auto",
+              height: "100vh",
+              left: 0
+            }}
+          >
             <MenuBar />
           </Sider>
+
           <Layout>
             <Content style={{
               padding: "0 5vh 0 5vh",
               height: "100vh",
               background: theme.palette.secondary.main,
               color: theme.palette.secondary.light,
+              overflow: "auto",
             }}>
               <AppContext>
                 <Router />

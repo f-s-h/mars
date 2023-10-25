@@ -3,20 +3,10 @@ mars-api/.vs
 mars-api/IdentityServer/bin
 mars-api/IdentityServer/obj
 mars-api/IdentityServer/keys
-mars-api/IdentityServer/*.db
 
 mars-api/mars-api/.vs
 mars-api/mars-api/bin
 mars-api/mars-api/obj
-mars-api/mars-api/*.db
-
 
 mars-client/node_modules
 mars-client/.vs
-
-/mars-api/IdentityServer/IdentityServer.db
-/mars-api/IdentityServer/IdentityServer.db-shm
-/mars-api/IdentityServer/IdentityServer.db-wal
-/mars-api/mars-api/Mars.db
-/mars-api/mars-api/Mars.db-shm
-/mars-api/mars-api/Mars.db-wal

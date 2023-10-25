@@ -56,7 +56,7 @@ const MenuBar: React.FC = () => {
       <Menu
         style={{ 
           height: "100vh",
-          width: "21vh" ,
+          width: "12vw" ,
         }}
         mode="inline"
         items={items}
