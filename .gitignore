@@ -10,10 +10,3 @@ mars-api/mars-api/obj
 
 mars-client/node_modules
 mars-client/.vs
-
-/mars-api/IdentityServer/IdentityServer.db
-/mars-api/IdentityServer/IdentityServer.db-shm
-/mars-api/IdentityServer/IdentityServer.db-wal
-/mars-api/mars-api/Mars.db
-/mars-api/mars-api/Mars.db-shm
-/mars-api/mars-api/Mars.db-wal
