@@ -21,7 +21,7 @@ const configuration = {
 function App() {
 
   const { Content, Sider } = Layout;
-  
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -37,7 +37,6 @@ function App() {
             >
               <MenuBar />
             </Sider>
-
             <Layout>
               <Content style={{
                 padding: "0 5vh 0 5vh",
