@@ -1,28 +1,15 @@
 import { toast } from "react-toastify";
 import axiosInstance, { addAccessInterceptor } from "../Configuration/axios"
 import { User, UserFormState } from "../models";
+import { TOASTIFY_ERROR_CONFIG, TOASTIFY_SUCCESS_CONFIG } from "../Configuration/toastify";
 
 const handleError = (error: any, errorMessage: string) => {
     console.error(error);
-    toast.error(errorMessage, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        theme: "light",
-    });
+    toast.error(errorMessage, TOASTIFY_SUCCESS_CONFIG);
 }
 
 const handleSuccess = (successMessage: string) => {
-    toast.success(successMessage, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        theme: "light",
-    });
+    toast.success(successMessage, TOASTIFY_ERROR_CONFIG);
 }
 
 export const getAllUsers = async (accessToken: string) => {
