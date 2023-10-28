@@ -1,4 +1,4 @@
-import { Input } from "antd"
+import { Box, TextField } from "@mui/material";
 
 interface FormInputProps {
     label?: string,
@@ -13,10 +13,21 @@ const FormInput = (props: FormInputProps) => {
     }
 
     return (
-        <>
-            {props.label? <label>{props.label}</label> : <></>}
-            <Input onChange={(e) => onChange(e.target.value)}></Input>
-        </>
+        <Box
+            sx={{
+                width: "100%",
+            }}
+        >
+            <TextField 
+                label={props.label} 
+                onChange={(e) => onChange(e.target.value)}
+                sx={{
+                    margin: "5px",
+                    width: "100%",
+                }}
+                size="small"
+            />
+        </Box>
     )
 }
 
