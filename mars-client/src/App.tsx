@@ -8,15 +8,7 @@ import { ThemeProvider } from '@emotion/react';
 import { theme } from './Configuration/theme';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const configuration = {
-  client_id: 'react-mars-client',
-  redirect_uri: window.location.origin + "/authentication/callback",
-  silent_redirect_uri: window.location.origin + "/authentication/silent-callback",
-  scope: 'openid profile mars-api offline_access',
-  authority: 'https://localhost:5001',
-  client_secret: "secret",
-}
+import { OIDC_CONFIGURATION } from './Configuration/oidc';
 
 function App() {
 
@@ -25,7 +17,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <OidcProvider configuration={configuration}>
+        <OidcProvider configuration={OIDC_CONFIGURATION}>
           <Layout>
             <Sider
               width={"12vw"}
