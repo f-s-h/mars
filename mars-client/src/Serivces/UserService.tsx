@@ -3,13 +3,18 @@ import axiosInstance, { addAccessInterceptor } from "../Configuration/axios"
 import { User, UserFormState } from "../models";
 
 const handleError = (error: any, errorMessage: string) => {
-    // TODO: Throw toast error
     console.error(error);
-    toast.error(errorMessage);
+    toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "light",
+    });
 }
 
 const handleSuccess = (successMessage: string) => {
-    console.log("Success");
     toast.success(successMessage, {
         position: "top-right",
         autoClose: 2000,

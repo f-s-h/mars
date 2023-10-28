@@ -9,7 +9,6 @@ const FormInput = (props: FormInputProps) => {
     const setValue = props.setValue;
 
     const onChange = (value: any) => {
-        console.log(value);
         setValue(value);
     }
 

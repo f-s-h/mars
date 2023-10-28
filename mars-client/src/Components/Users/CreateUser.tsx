@@ -31,7 +31,6 @@ export const CreateUser = () => {
 
     const onSubmit = async () => {
         var userResponse = await createUser(newUser);
-        console.log(userResponse);
         setNewUser({} as User);
     }
 
@@ -110,8 +109,6 @@ export const CreateUser = () => {
             label: "Address",
             values: [],
             setValues(values: any[]) {
-                console.log("Create User");
-                console.log(values);
                 setNewUser({
                     ...newUser,
                     addresses: values,

@@ -26,7 +26,6 @@ export const UserDetail = (props: UserDetailProps) => {
             var user = await getUserDetailById(userId).then();
             setUser(user);
             setLoading(false);
-            console.log(user);
         }
     }
 

@@ -25,11 +25,6 @@ const CreateUserObjects = (props: CreateUserObjectsProps) => {
         }
     }
 
-    const setValuesLog = (values: any) => {
-        console.log(values);
-        setValues(values);
-    }
-
     const addObject = (value: any, index: number) => {
         values[index] = value;
         setValues(values);
