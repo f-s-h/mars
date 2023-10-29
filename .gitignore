@@ -10,3 +10,7 @@ mars-api/mars-api/obj
 
 mars-client/node_modules
 mars-client/.vs
+
+mars-client/.idea/.idea.mars-client.dir/.idea/projectSettingsUpdater.xml
+
+mars-client/.idea/.idea.mars-client.dir/.idea/workspace.xml
