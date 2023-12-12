@@ -14,6 +14,7 @@ export const UserInteractionBar = (props: UserInteractionBarProps) => {
     }
 
     const handleEdit = () => {
+        navigate(`/user/${props.id}/edit`)
     }
 
     return (

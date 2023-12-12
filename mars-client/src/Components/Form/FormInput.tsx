@@ -1,8 +1,10 @@
 import { Box, TextField } from "@mui/material";
+import { theme } from "../../Configuration/theme";
 
 interface FormInputProps {
     label?: string,
-    setValue: (value: any) => void;
+    defaultValue?: any,
+    setValue: (value: any) => void,
 }
 
 const FormInput = (props: FormInputProps) => {
@@ -16,6 +18,7 @@ const FormInput = (props: FormInputProps) => {
         <Box
             sx={{
                 width: "100%",
+                disabled: "true",
             }}
         >
             <TextField 
@@ -26,6 +29,7 @@ const FormInput = (props: FormInputProps) => {
                     width: "100%",
                 }}
                 size="small"
+                defaultValue={props.defaultValue}
             />
         </Box>
     )

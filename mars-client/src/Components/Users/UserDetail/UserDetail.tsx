@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUser } from '../../../Context/UserContext';
 import { User } from '../../../models';
-import { Spin } from 'antd';
+import { Spin, Button, Table } from 'antd';
 import { DetailItem } from './DetailItem';
 import { Box } from '@mui/material'
 
@@ -41,40 +41,39 @@ export const UserDetail = (props: UserDetailProps) => {
                         backgroundColor: "white",
                         borderRadius: "5px",
                         padding: "2vh",
+                        display: "inline-block"
                     }}
                 >
-                    <DetailItem name={"First name"} value={user.firstName} />
-                    <DetailItem name={"Last name"} value={user.lastName} />
-                    {user.emails?
-                        user.emails.map((email, index) => {
-                            return(
-                                <DetailItem name={`Email ${index}:`} value={email.email}></DetailItem>
-                            )
-                        }) : <></>
-                    }
-                    {user.phoneNumbers ?
-                        user.phoneNumbers.map((phoneNumber, index) => {
-                            return (
-                                <DetailItem name={`Phone number ${index}`} value={phoneNumber.number} />
-                            )
-                        })
-                        : <></>
-                    }
-                    {user.addresses ?
-
-                        user.addresses.map((address, index) => {
-                            return (
-                                <>
-                                    Address {index}:
-                                    <DetailItem name={"Street"} value={address.street} />
-                                    <DetailItem name={"House number"} value={address.houseNumber} />
-                                    <DetailItem name={"Postal code"} value={address.postalCode} />
-                                    <DetailItem name={"City"} value={address.city} />
-                                    <DetailItem name={"Country"} value={address.country.name} />
-                                </>
-                            )
-                        }) : <></>
-                    }
+                    <Box
+                        sx={{
+                            position: "relative"
+                        }}    
+                    >
+                    <Button
+                            style={{
+                                borderRadius: "0px",
+                            }}
+                        >
+                            Basic
+                        </Button>
+                        <Button
+                            style={{
+                                borderRadius: "0px",
+                            }}
+                        >
+                            Addresses
+                        </Button>
+                        <Button
+                            style={{
+                                borderRadius: "0px",
+                            }}
+                        >
+                            PhoneNumbers
+                        </Button>
+                    </Box>
+                    <Table>
+                        
+                    </Table>
                 </Box>
             }
         </>

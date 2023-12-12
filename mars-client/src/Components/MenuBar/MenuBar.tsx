@@ -3,26 +3,51 @@ import { Menu, MenuProps } from "antd"
 import { Link } from "react-router-dom";
 import { useOidc } from "@axa-fr/react-oidc";
 import { Profile } from "./Profile";
-import { Box } from "@mui/material" 
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
+import { InboxOutlined, MailOutline } from "@mui/icons-material";
+import { theme } from "../../Configuration/theme";
+import { ComponentType } from "react";
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-  type?: 'group',
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  } as MenuItem;
+interface MenuItem {
+  name: string,
+  to: string,
 }
 
+interface MenuSection {
+  sectionName: string,
+  items: MenuItem[]
+}
+
+const menuSections: MenuSection[] = [
+  {
+    sectionName: "Home",
+    items: [
+      {
+        name: "Home",
+        to: "/",
+      },
+    ]
+  },
+  {
+    sectionName: "User",
+    items: [
+      {
+        name: "Users Overview",
+        to: "/users",
+      },
+      {
+        name: "Create User",
+        to: "/create/user",
+      },
+      {
+        name: "Create User New",
+        to: "/create/user/new",
+      },
+    ]
+  }
+]
+
+/*
 const items: MenuProps['items'] = [
   getItem("Home", "home", <Link to="/" />),
 
@@ -34,7 +59,7 @@ const items: MenuProps['items'] = [
 
   { type: 'divider' },
 
-  /*
+  
   getItem('Settings', 'sub4', <SettingOutlined />, [
     getItem('Option 9', '9', <Link to="/notimplemented" />),
     getItem('Option 10', '10', <Link to="/notimplemented" />),
@@ -43,27 +68,65 @@ const items: MenuProps['items'] = [
   ]),
   */
 
-];
-
 const MenuBar: React.FC = () => {
+  const DRAWER_WIDTH = "12vw"
 
   return (
-    <Box
+    <Drawer
       sx={{
-        position: "fixed",
+        width: DRAWER_WIDTH,
+        '& .MuiDrawer-paper': {
+          width: DRAWER_WIDTH,
+          boxSizing: 'border-box',
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
+        },
       }}
+      variant="permanent"
+      anchor="left"
     >
-      <Menu
-        style={{ 
-          height: "100vh",
-          width: "12vw" ,
+      <List>
+        <ListItem key={"Home"} disablePadding>
+          <ListItemButton href="/">
+            <ListItemText primary={"Home"}/>
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider
+        textAlign="left"
+        sx={{
+          "&::before, &::after": {
+            borderColor: theme.palette.primary.light
+          },
+          color: theme.palette.primary.light
         }}
-        mode="inline"
-        items={items}
-        theme="dark"
-      />
-      <Profile/>
-    </Box>
+      >
+        User
+      </Divider>
+      <List>
+        <ListItem key={"Create User"} disablePadding>
+          <ListItemButton href="/users/create">
+            <ListItemText primary={"Create User"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key={"User Overview"} disablePadding>
+          <ListItemButton href="/users">
+            <ListItemText primary={"User Overview"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider
+        textAlign="left"
+        sx={{
+          "&::before, &::after": {
+            borderColor: theme.palette.primary.light
+          },
+          color: theme.palette.primary.light
+        }}
+      >
+        User
+      </Divider>
+    </Drawer>
   )
 }
 
