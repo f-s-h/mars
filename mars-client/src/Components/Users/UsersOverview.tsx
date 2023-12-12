@@ -27,11 +27,13 @@ export const UsersOverview = () => {
       title: 'Firstname',
       dataIndex: 'firstName',
       key: 'firstName',
+      width: '45%',
     },
     {
       title: 'Lastname',
       dataIndex: 'lastName',
-      key: 'lastName'
+      key: 'lastName',
+      width: '45%',
     },
     {
       title: 'Options',
@@ -42,7 +44,8 @@ export const UsersOverview = () => {
             <UserInteractionBar id={id}/>
           </>
         )
-      }
+      },
+      width: '10%',
     }
   ]
 

@@ -10,12 +10,11 @@ export const UserInteractionBar = (props: UserInteractionBarProps) => {
     const navigate = useNavigate();
 
     const handleView = () => {
-        console.log("view");
         navigate(`/user/${props.id}`);
     }
 
     const handleEdit = () => {
-        console.log("edit: not implemented yet");
+        navigate(`/user/${props.id}/edit`)
     }
 
     return (

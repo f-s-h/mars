@@ -6,8 +6,9 @@ import { User } from "../../models";
 import StepperButtonBar from "../Stepper/ButtonBar";
 import { useUser } from "../../Context/UserContext";
 import { Spin } from "antd";
+import { ModifyUserStep, modifyUserStep } from "./ModifyUser/Configuration/modifyUserStepsConfiguration";
 
-const CreateUser = () => {
+const ModifyUser = () => {
     const {
         loading,
         createUser,
@@ -16,7 +17,7 @@ const CreateUser = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [newUser, setNewUser] = useState({} as User);
 
-    const nrSteps = createUserSteps.length;
+    const nrSteps = modifyUserStep.length;
 
     useEffect(() => {
         console.log(newUser);
@@ -39,7 +40,7 @@ const CreateUser = () => {
                 activeStep={activeStep}
                 alternativeLabel
             >
-                {createUserSteps.map(({ label, Component }) => {
+                {modifyUserStep.map(({ label, Component }) => {
                     return (
                         <Step>
                             <StepLabel>
@@ -50,7 +51,7 @@ const CreateUser = () => {
                 })
                 }
             </Stepper>
-            {createUserSteps.map(({ label, Component }: CreateUserStep, index) => {
+            {modifyUserStep.map(({ label, Component }: ModifyUserStep, index) => {
                 return (
                     <>
                         {activeStep === index ?
@@ -72,4 +73,4 @@ const CreateUser = () => {
     )
 }
 
-export default CreateUser
+export default ModifyUser

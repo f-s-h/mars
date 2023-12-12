@@ -3,29 +3,57 @@ import MenuBar from './Components/MenuBar/MenuBar';
 import { Layout } from 'antd'
 import { Router } from './router';
 import AppContext from './AppContext';
-import { OidcProvider } from '@axa-fr/react-oidc';
+import { OidcProvider, OidcSecure } from '@axa-fr/react-oidc';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './Configuration/theme';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const configuration = {
-  client_id: 'react-mars-client',
-  redirect_uri: window.location.origin + "/authentication/callback",
-  silent_redirect_uri: window.location.origin + "/authentication/silent-callback",
-  scope: 'openid profile mars-api offline_access',
-  authority: 'https://localhost:5001',
-  client_secret: "secret",
-}
+import { OIDC_CONFIGURATION } from './Configuration/oidc';
+import { AppBar, Box, CssBaseline, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import { InboxOutlined, MailOutline } from '@mui/icons-material'
 
 function App() {
-
-  const { Content, Sider } = Layout;
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <OidcProvider configuration={configuration}>
+        <OidcProvider configuration={OIDC_CONFIGURATION}>
+          <OidcSecure>
+          <Box sx={{ display: 'flex' }}>
+            <MenuBar/>
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <AppContext>
+                <Box
+                  sx={{
+                    paddingTop: "2vh",
+                    paddingBottom: "2vh",
+                    paddingLeft: "2vw",
+                    paddingRight: "2vw",
+                  }}
+                >
+                <Router />
+                </Box>
+              </AppContext>
+            </Box>
+          </Box>
+          </OidcSecure>
+        </OidcProvider>
+      </ThemeProvider>
+      <ToastContainer />
+    </>
+  );
+}
+
+export default App;
+
+/*
+<>
+      <ThemeProvider theme={theme}>
+        <OidcProvider configuration={OIDC_CONFIGURATION}>
           <Layout>
             <Sider
               width={"12vw"}
@@ -55,7 +83,4 @@ function App() {
       </ThemeProvider>
       <ToastContainer />
     </>
-  );
-}
-
-export default App;
+*/
