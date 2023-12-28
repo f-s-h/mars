@@ -1,4 +1,5 @@
 ﻿using mars_api.Context;
+using mars_api.Services.MailService;
 using mars_api.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +55,7 @@ namespace mars_api
         private static void AddScopesService(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IMailService, MailService>();
         }
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
