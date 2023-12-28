@@ -1,7 +1,5 @@
 ﻿using mars_api.Context;
-using mars_api.Data.DTO;
 using mars_api.Data.DTO.Users;
-using mars_api.Data.Models;
 using mars_api.Data.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
