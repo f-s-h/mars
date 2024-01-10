@@ -31,6 +31,12 @@
 
 - Email
 
+- Website
+  - Upload Events
+  - Chargen aktualisieren
+    - Bild in kartei speichern
+      -> WordPress Klasse oder so
+
 ## Notes
 
 - Mails with Mailkit
