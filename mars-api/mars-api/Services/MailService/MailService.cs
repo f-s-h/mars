@@ -44,6 +44,35 @@ namespace mars_api.Services.MailService
             teardownSmtpConnection();
         }
 
+        public void SendBroadcastGroupEmail(Guid groupId, MailDTO request)
+        {
+            var group = context.Groups
+                .Where(g => g.Id.Equals(groupId))
+                .FirstOrDefault();
+            if(group == null)
+            {
+                return;
+            }
+            establishSmtpConnection();
+
+            var users = group.Users.ToList();
+            foreach (User user in users)
+            {
+                var to = user.Emails.Select(e => e.Email).ToList();
+                var subject = applyTags(request.Subject, user);
+                var body = applyTags(request.Body, user);
+
+                var email = CreateEmailMultipleRecipients(to, subject, body);
+
+                if (email != null)
+                {
+                    smtp.Send(email);
+                }
+            }
+
+            teardownSmtpConnection();
+        }
+
         public void SendEmail(MailDTO request)
         {
             var email = CreateEmail(request.To, request.Subject, request.Body);

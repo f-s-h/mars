@@ -62,7 +62,7 @@
 
 ### [Put]
 
-#### /UserController/UpdateUser (TODO)
+#### /UserController/UpdateUser
 
 ## Group
 
@@ -72,15 +72,18 @@
 
 #### /GroupController/GetAllGroups
 
+#### /GroupController/GetAllGroupsDetails
+
+
 ### [Post]
 
 #### /GroupController/CreateGroup
 
 ### [Put]
 
-#### /GroupController/UpdateGroup (TODO)
+#### /GroupController/UpdateGroup
 
-#### /GroupController/AssignUserToGroup/{groupId}/{userId} (TODO)
+#### /GroupController/AssignUserToGroup/{groupId}/{userId}
 
 ## Mail
 

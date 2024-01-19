@@ -6,5 +6,6 @@ namespace mars_api.Services.MailService
     {
         void SendEmail(MailDTO request);
         void SendBroadcastEmail(MailDTO request);
+        void SendBroadcastGroupEmail(Guid groupId, MailDTO request);
     }
 }

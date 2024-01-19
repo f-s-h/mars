@@ -31,5 +31,12 @@ namespace mars_api.Controllers
             emailService.SendBroadcastEmail(request);
             return Ok();
         }
+
+        [HttpPost("{groupId}")]
+        public IActionResult SendBroadcastGroupEmail([FromRoute] Guid groupId, [FromBody] MailDTO request)
+        {
+            emailService.SendBroadcastGroupEmail(groupId, request);
+            return Ok();
+        }
     }
 }
