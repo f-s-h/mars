@@ -77,5 +77,11 @@ namespace mars_api.Services.UserService
             // Returns userDTO with new ids
             return GetUserDetailById(userId);
         }
+
+        public void UpdateUser(UserDTO userDTO)
+        {
+            context.Update(userDTO);
+            context.SaveChanges();
+        }
     }
 }

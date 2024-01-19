@@ -19,27 +19,6 @@ namespace mars_api.Controllers
             this.userService = userService;
         }
 
-        [HttpGet]
-        public ActionResult<ICollection<UserDTO>> GetAllUsers()
-        {
-            var users = userService.GetAllUsers();
-            if (users.IsNullOrEmpty())
-            {
-                return NoContent();
-            }
-            return Ok(users);
-        }
-
-        [HttpGet]
-        public ActionResult<ICollection<UserDTO>> GetAllUsersDetail()
-        {
-            var users = userService.GetAllUsersDetail();
-            if (users.IsNullOrEmpty())
-            {
-                return NoContent();
-            }
-            return Ok(users);
-        }
 
         [HttpGet("{userId}")]
         public ActionResult<ICollection<UserDTO>> GetUserById([FromRoute] Guid userId)
@@ -65,6 +44,28 @@ namespace mars_api.Controllers
             return Ok(user);
         }
 
+        [HttpGet]
+        public ActionResult<ICollection<UserDTO>> GetAllUsers()
+        {
+            var users = userService.GetAllUsers();
+            if (users.IsNullOrEmpty())
+            {
+                return NoContent();
+            }
+            return Ok(users);
+        }
+
+        [HttpGet]
+        public ActionResult<ICollection<UserDTO>> GetAllUsersDetail()
+        {
+            var users = userService.GetAllUsersDetail();
+            if (users.IsNullOrEmpty())
+            {
+                return NoContent();
+            }
+            return Ok(users);
+        }
+
         [HttpPost]
         public ActionResult<UserDTO> CreateUser([FromBody] UserDTO userDTO)
         {
@@ -74,6 +75,13 @@ namespace mars_api.Controllers
                 return BadRequest();
             }
             return Ok(createdUser);
+        }
+
+        [HttpPut]
+        public ActionResult<UserDTO> UpdateUser([FromBody] UserDTO userDTO)
+        {
+            userService.UpdateUser(userDTO);
+            return Ok();
         }
     }
 }

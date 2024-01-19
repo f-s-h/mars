@@ -9,5 +9,6 @@ namespace mars_api.Services.UserService
         public UserDTO? GetUserById(Guid userId);
         public UserDTO? GetUserDetailById(Guid userId);
         public UserDTO? CreateUser(UserDTO userDTO);
+        public void UpdateUser(UserDTO userDTO);
     }
 }
