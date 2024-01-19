@@ -97,5 +97,11 @@ namespace mars_api.Services.GroupService
 
             return users;
         }
+
+        public void UpdateGroup(GroupDTO groupDTO)
+        {
+            context.Update(groupDTO);
+            context.SaveChanges();
+        }
     }
 }

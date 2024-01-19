@@ -11,5 +11,6 @@ namespace mars_api.Services.GroupService
         public GroupDTO? CreateGroup(GroupDTO groupDTO);
         public void AssignUserToGroup(Guid groupId, Guid userId);
         public ICollection<UserDTO> GetGroupUsersById(Guid id);
+        public void UpdateGroup(GroupDTO groupDTO);
     }
 }

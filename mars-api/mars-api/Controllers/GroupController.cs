@@ -56,10 +56,11 @@ namespace mars_api.Controllers
             return Ok();
         }
 
-        [HttpGet("{groupId}")]
-        public ActionResult<ICollection<UserDTO>> GetGroupUsersById([FromRoute] Guid groupId) {
-            var users = groupService.GetGroupUsersById(groupId);
-            return Ok(users);
+        [HttpPut]
+        public ActionResult AssignUserToGroup([FromBody] GroupDTO groupDTO)
+        {
+            groupService.UpdateGroup(groupDTO);
+            return Ok();
         }
     }
 }
