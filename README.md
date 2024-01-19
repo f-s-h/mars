@@ -95,6 +95,6 @@
 
 #### /MailController/SendBroadcastEmail
 
-#### /MailController/SendGroupBroadcastEmail/{groupId} (TODO)
+#### /MailController/SendGroupBroadcastEmail/{groupId} 
 
 ### [Put]
