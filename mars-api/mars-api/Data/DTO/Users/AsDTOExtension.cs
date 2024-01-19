@@ -1,7 +1,6 @@
-﻿using mars_api.Data.DTO.Users;
-using mars_api.Data.Models.Users;
+﻿using mars_api.Data.Models.Users;
 
-namespace mars_api.Data.DTO
+namespace mars_api.Data.DTO.Users
 {
     public static class AsDTOExtension
     {
@@ -19,6 +18,7 @@ namespace mars_api.Data.DTO
                 Emails = user.Emails.Select(e => e.AsDTO()).ToList(),
                 PhoneNumbers = user.PhoneNumbers.Select(p => p.AsDTO()).ToList(),
                 Addresses = user.Addresses.Select(a => a.AsDTO()).ToList(),
+                Groups = user.Groups.Select(g => g.Id).ToList(),
             };
         }
 

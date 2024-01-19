@@ -1,4 +1,5 @@
-﻿using mars_api.Data.Models.Users;
+﻿using mars_api.Data.Models.Groups;
+using mars_api.Data.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace mars_api.Context
@@ -9,8 +10,8 @@ namespace mars_api.Context
         public virtual DbSet<PhoneNumber> PhoneNumbers => Set<PhoneNumber>();
         public virtual DbSet<Address> Addresses => Set<Address>();
         public virtual DbSet<Country> Countries => Set<Country>();
+        public virtual DbSet<Group> Groups => Set<Group>();
         public virtual DbSet<EMail> Email => Set<EMail>();
-
         public MarsContext(DbContextOptions options)
             : base(options){ }
     }

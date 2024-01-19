@@ -1,8 +1,7 @@
 ﻿using mars_api.Data.DTO.Users;
-using mars_api.Data.Models.Users;
 using System.Reflection.Metadata.Ecma335;
 
-namespace mars_api.Data.Models
+namespace mars_api.Data.Models.Users
 {
     public static class AsModelExtension
     {
@@ -47,7 +46,7 @@ namespace mars_api.Data.Models
             };
         }
 
-        public static EMail AsModel (this EMailDTO emailDTO)
+        public static EMail AsModel(this EMailDTO emailDTO)
         {
             return new EMail()
             {

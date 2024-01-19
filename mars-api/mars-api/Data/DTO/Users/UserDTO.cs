@@ -1,4 +1,6 @@
-﻿namespace mars_api.Data.DTO.Users
+﻿using mars_api.Data.DTO.Groups;
+
+namespace mars_api.Data.DTO.Users
 {
     public class UserDTO
     {
@@ -13,5 +15,6 @@
 
         public List<PhoneNumberDTO> PhoneNumbers { get; set; } = new List<PhoneNumberDTO>();
         public List<AddressDTO> Addresses { get; set; } = new List<AddressDTO>();
+        public List<Guid> Groups { get; set; } = new List<Guid>();
     }
 }
