@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace mars_api.Controllers
 {
+    [AllowAnonymous]
     [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("/api/[controller]/[action]")]

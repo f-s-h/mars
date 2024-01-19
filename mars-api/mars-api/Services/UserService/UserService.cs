@@ -44,6 +44,7 @@ namespace mars_api.Services.UserService
                 .Include(u => u.PhoneNumbers)
                 .Include(u => u.Addresses)
                 .Include(u => u.Emails)
+                .Include(u => u.Groups)
                 .Where(u => u.Id == userId)
                 .Select(u => u.AsDTO())
                 .FirstOrDefault();

@@ -18,6 +18,7 @@ namespace mars_api.Data.DTO.Users
                 Emails = user.Emails.Select(e => e.AsDTO()).ToList(),
                 PhoneNumbers = user.PhoneNumbers.Select(p => p.AsDTO()).ToList(),
                 Addresses = user.Addresses.Select(a => a.AsDTO()).ToList(),
+                Groups = user.Groups.Select(g => g.Id).ToList(),
             };
         }
 
