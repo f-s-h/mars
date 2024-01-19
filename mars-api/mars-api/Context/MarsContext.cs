@@ -11,6 +11,7 @@ namespace mars_api.Context
         public virtual DbSet<Address> Addresses => Set<Address>();
         public virtual DbSet<Country> Countries => Set<Country>();
         public virtual DbSet<Group> Groups => Set<Group>();
+        public virtual DbSet<EMail> Email => Set<EMail>();
         public MarsContext(DbContextOptions options)
             : base(options){ }
     }

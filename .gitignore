@@ -10,3 +10,4 @@ mars-api/mars-api/obj
 
 mars-client/node_modules
 mars-client/.vs
+/mars-api/mars-api/appsettings.json
