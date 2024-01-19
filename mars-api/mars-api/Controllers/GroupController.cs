@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mars_api.Controllers
 {
-    [AllowAnonymous]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class GroupController : ControllerBase
