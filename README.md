@@ -98,3 +98,32 @@
 #### /MailController/SendGroupBroadcastEmail/{groupId} 
 
 ### [Put]
+
+## Events
+
+### [Get]
+
+#### /EventController/GetAllEvents
+
+#### /EventController/GetEventById/{eventId}
+
+#### /EventController/GetAllEventsFromMonth/{year}/{month}
+
+#### /EventController/GetAllEventsFromYear/{year}
+
+#### /EventController/GetAllEventsFromRange/
+Body: 
+- DateOnly from
+- DateOnly to 
+
+### [Post]
+
+#### /EventController/CreateEvent
+Body:
+- EventDTO eventDTO
+
+### [Put]
+
+#### /EventController/UpdateEvent
+Body: 
+- EventDTO eventDTO
