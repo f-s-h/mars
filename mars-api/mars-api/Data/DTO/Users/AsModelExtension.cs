@@ -1,7 +1,7 @@
-﻿using mars_api.Data.DTO.Users;
+﻿using mars_api.Data.Models.Users;
 using System.Reflection.Metadata.Ecma335;
 
-namespace mars_api.Data.Models.Users
+namespace mars_api.Data.DTO.Users
 {
     public static class AsModelExtension
     {

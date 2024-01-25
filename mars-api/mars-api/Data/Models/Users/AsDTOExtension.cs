@@ -1,6 +1,6 @@
-﻿using mars_api.Data.Models.Users;
+﻿using mars_api.Data.DTO.Users;
 
-namespace mars_api.Data.DTO.Users
+namespace mars_api.Data.Models.Users
 {
     public static class AsDTOExtension
     {
