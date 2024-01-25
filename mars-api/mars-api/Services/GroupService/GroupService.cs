@@ -11,11 +11,9 @@ namespace mars_api.Services.GroupService
     public class GroupService : IGroupService
     {
         private readonly MarsContext context;
-        private readonly IUserService userService;
 
-        public GroupService(MarsContext context, IUserService userService) { 
+        public GroupService(MarsContext context) { 
             this.context = context;
-            this.userService = userService;
         }
 
         public GroupDTO? CreateGroup(GroupDTO groupDTO)
@@ -63,20 +61,7 @@ namespace mars_api.Services.GroupService
 
             if(user != null && group != null)
             {
-                Console.WriteLine("Before Update: ");
-                foreach(User u in group.Users)
-                {
-                    Console.WriteLine(u.Id);
-                }
                 group.Users.Add(user);
-                //context.Groups.Update(group);
-                Console.WriteLine("After Update: ");
-                group.Users.Add(user);
-                foreach (User u in group.Users)
-                {
-                    Console.WriteLine(u.Id);
-                    Console.WriteLine(u.FirstName);
-                }
                 context.SaveChanges();
             }
         }
@@ -100,7 +85,7 @@ namespace mars_api.Services.GroupService
 
         public void UpdateGroup(GroupDTO groupDTO)
         {
-            context.Update(groupDTO);
+            context.Update(groupDTO.AsModel());
             context.SaveChanges();
         }
     }

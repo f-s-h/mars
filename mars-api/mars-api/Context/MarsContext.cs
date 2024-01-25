@@ -1,4 +1,5 @@
-﻿using mars_api.Data.Models.Groups;
+﻿using mars_api.Data.Models.Events;
+using mars_api.Data.Models.Groups;
 using mars_api.Data.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace mars_api.Context
         public virtual DbSet<Country> Countries => Set<Country>();
         public virtual DbSet<Group> Groups => Set<Group>();
         public virtual DbSet<EMail> Email => Set<EMail>();
+        public virtual DbSet<Event> Events => Set<Event>();
         public MarsContext(DbContextOptions options)
             : base(options){ }
     }

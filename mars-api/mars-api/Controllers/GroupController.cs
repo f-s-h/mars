@@ -38,7 +38,7 @@ namespace mars_api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<GroupDTO> CreateGroup(GroupDTO groupDTO)
+        public ActionResult<GroupDTO> CreateGroup([FromBody] GroupDTO groupDTO)
         {
             GroupDTO? group = groupService.CreateGroup(groupDTO);
             if(group == null)
