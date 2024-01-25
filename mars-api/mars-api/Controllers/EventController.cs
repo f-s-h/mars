@@ -49,7 +49,7 @@ namespace mars_api.Controllers
         }
 
         [HttpGet()]
-        public ActionResult<IEnumerable<EventDTO>> GetAllEventsFromRange([FromBody] DateOnly from, [FromBody] DateOnly to)
+        public ActionResult<IEnumerable<EventDTO>> GetAllEventsFromRange([FromBody] DateOnly from, DateOnly to)
         {
             var events = GetAllEventsFromRange(from, to);
             return Ok(events);
